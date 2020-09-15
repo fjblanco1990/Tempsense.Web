@@ -135,18 +135,23 @@ label {
 
 
 .btn-login {
-  font-family: 'Gayathri', sans-serif;
-    color: #ffffff;
-    margin: 36px 52px;
-    height: 40px;
-    border: none;
-    border-radius: 0.1em;
-    width: 56%;
-    background: #F6B944;
+   font-family: 'Gayathri', sans-serif;
+  background: transparent;
+  border: 0;
+  color: wheat;
+  margin: 36px 52px;
+  height: 40px;
+  border: 0;
+  border-radius: 0.1em;
+  width: 56%;
+  outline: none !important;
+  font-size: 18px;
 }
 
 .btn-login:hover{
  cursor: pointer;
+ color: white;
 }
+
 
 
