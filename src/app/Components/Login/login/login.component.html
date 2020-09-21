@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--Prueba de commit y merge-->
-</head>
-
-<body>
-    <div class="page">
+    <div class="page" *ngIf="!MostrarRegistro">
         <div class="container">
             <div class="left">
                 <div class="login">Login</div>
@@ -20,8 +11,9 @@
                     <defs>
                         <linearGradient inkscape:collect="always" id="linearGradient" x1="13" y1="193.49992" x2="307"
                             y2="193.49992" gradientUnits="userSpaceOnUse">
-                            <stop style="stop-color:#F6B944;" offset="0" id="stop876" />
-                            <stop style="stop-color:#C11626;" offset="1" id="stop878" />
+                            <stop style="stop-color:#ffff;" offset="0" id="stop876" />
+                            <stop style="stop-color:#F6B944;" offset="1" id="stop878" />
+                           
                         </linearGradient>
 
                     </defs>
@@ -33,13 +25,23 @@
                     <input type="email" placeholder="Email" class="input-login" id="email">
                     <label for="password"></label>
                     <input type="password" placeholder="Contraseña" class="input-login" id="password">
-                    <input type="submit" class="btn-login" value="Iniciar sesion">
-                    <!-- <input type="submit" id="submit" value="Submit"> -->
-                    <!-- (click)="IniciarSesion()" -->
+                    <input type="submit" class="btn-login" value="Iniciar sesion" (click)="IniciarSesion()">
+                    <!-- <input type="submit" class="btn-login" value="Registrar usuarios" (click)="RegistrarUsuarios()"> -->
+                    <div class="col-xs-12 col-md-3 col-lg-2 btnInicio">
+                        <div class="btn-group">
+                            <li class="dropdown" dropdown>
+                                <a class="logoIntel" data-toggle="tooltip" data-placement="bottom" title="Registrar usuarios" (click)="RegistrarUsuarios()">
+                                    <!-- href="{{url}}/Crear-Usuarios" -->
+                                    <img class="IconUser" src="../../../../assets/images/add.svg" alt="add usuario">
+                                </a>
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
 
-</html>
+    <app-usuarios *ngIf="MostrarRegistro" (emitEventClose)="recibirFormUsuario($event)"></app-usuarios>
+    
+

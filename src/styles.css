@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    background:none;
+    font-family: 'Gayathri', sans-serif;
+    background-image: url(assets/images/Patron-02.svg);
+    background-repeat: no-repeat;
+    background-size: 800px;
+    background-position: 134% 404%;
+}

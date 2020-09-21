@@ -1,0 +1,294 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Gayathri', sans-serif;
+    font-size: 20px;
+    /* background-image: url(_img/patron-02.png);
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+
+body {
+
+    background:none;
+    font-family: 'Gayathri', sans-serif;
+    background-image: url(../../../../assets/images/Patron-02.svg);
+    background-repeat: no-repeat;
+    background-size: 800px;
+    background-position: 134% 404%;
+    
+}
+
+.bussines {
+    width: 35%;
+} 
+
+.logo{
+
+    width: 150px;
+    height: 150px;
+    margin-left: 10px;
+    /* margin-top: 72px; */
+}
+
+.logoTemp{
+
+    width: 54%;
+    height: 150px;
+    margin-left: 10px;
+    /* margin-top: 72px; */
+}
+
+.temp1{
+    text-align: center;
+}
+
+.contenedorlogo {
+    margin: 0px 10%;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.contenedorPpal {
+    margin: 0px 10%;
+    margin-top: 5%;
+    margin-bottom: 8%;
+}
+
+#contenedorInterno{
+    width: 80%;
+    margin: 0px auto;
+    line-height: 30px;
+    list-style: none;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.clearfix{
+    clear: both;
+}
+
+.bussines{
+    margin: 10% 25%;
+}
+
+.usuario{
+    color: white;
+    margin-bottom: .1rem;
+    margin-top: 7px;
+}
+
+.IconUser{
+    width: 50px;
+}
+
+.btnInicio{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 55px;
+}
+
+.btnDegraddo {
+
+    background: rgba(255,152,17,1);
+    background: -moz-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,152,17,1)), color-stop(100%, rgba(214,121,0,1)));
+    background: -webkit-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9811', endColorstr='#d67900', GradientType=0 );
+
+    -webkit-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+}
+.btnDegraddo:hover {
+
+    background: rgb(255, 175, 69);
+    background: -moz-linear-gradient(top, rgb(255, 175, 69) 0%, rgb(248, 141, 0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,152,17,1)), color-stop(100%,  rgb(248, 141, 0)));
+    background: -webkit-linear-gradient(top,rgb(255, 175, 69) 0%,  rgb(248, 141, 0) 100%);
+    background: -o-linear-gradient(top, rgb(255, 175, 69) 0%,  rgb(248, 141, 0) 100%);
+    background: -ms-linear-gradient(top,rgb(255, 175, 69) 0%,  rgb(248, 141, 0) 100%);
+    background: linear-gradient(to bottom, rgb(255, 175, 69) 0%,  rgb(248, 141, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9811', endColorstr='#d67900', GradientType=0 );
+}
+
+.degradientBoton {
+    background: rgba(150,16,30,1);
+    background: -moz-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(150,16,30,1)), color-stop(100%, rgba(193,22,38,1)));
+    background: -webkit-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96101e', endColorstr='#c11626', GradientType=1 );
+    -webkit-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+}
+
+.degradientBoton:hover {
+ 
+    background: rgba(255,152,17,1);
+    background: -moz-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,152,17,1)), color-stop(100%, rgba(214,121,0,1)));
+    background: -webkit-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,152,17,1) 0%, rgba(214,121,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9811', endColorstr='#d67900', GradientType=0 );
+
+  }
+
+  .btn1{
+    margin-right: 0.5%;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+    border-radius: 0.3em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+.btn2{
+    	
+    transition:all .5s ease-in-out;
+
+    margin-right: 0.5%;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+    border-radius: 0.3em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+.btn3{
+
+    margin-right: 0.5%;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+    border-radius: 0.3em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+
+.btn4{
+
+    margin-right: 0.5%;
+     width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+     border-radius: 0.5em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+
+.btn5{
+
+    margin-right: 0.5%;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+     border-radius: 0.5em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+.btn6{
+
+    margin-right: 0.5%;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+     border-radius: 0.5em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+
+.btn7{
+
+    margin-right: 0.5%;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+     border-radius: 0.5em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+
+.btn8{
+
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+     border-radius: 0.5em;
+    cursor: pointer;
+    margin-bottom: 10%;
+}
+
+
+footer{
+
+    background: #333333;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 56px;
+    width: 100%;
+}
+
+.dropdown {
+    text-decoration: none !important;
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    background: rgba(150,16,30,1);
+    background: -moz-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(150,16,30,1)), color-stop(100%, rgba(193,22,38,1)));
+    background: -webkit-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96101e', endColorstr='#c11626', GradientType=1 );
+    -webkit-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    border-radius: 50%;
+}
+
+.dropdown-menu > a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.dropdown-menu > li > a:hover {
+    text-decoration: none;
+    color: #333333;
+}
+
+.menu-drop {
+    padding: 15px;
+    color: rgba(150,16,30,1);
+}
