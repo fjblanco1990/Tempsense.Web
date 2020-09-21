@@ -9,7 +9,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsuariosComponent } from './Components/Maestros/Usuarios/usuarios/usuarios.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { EnvironmentService } from './Services/Enviroment/enviroment.service';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,11 @@ import { UsuariosComponent } from './Components/Maestros/Usuarios/usuarios/usuar
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, EnvironmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

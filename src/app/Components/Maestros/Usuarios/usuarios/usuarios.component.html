@@ -14,7 +14,7 @@
                                     Registrar Usuarios
                                 </span> 
                             </div>
-                            <div class="col-xs-12 col-md-6 col-lg-2" id="ta" (click)="returnBack()">
+                            <div class="col-xs-12 col-md-6 col-lg-2" id="ta" (click)="returnBack()" style="text-align: right;">
                                <Label>X</Label>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                     <div class="col-xs-12 col-md-6 col-lg-12" id="ta">
                         <div class="from-input">
                             <select class="input-from" name="" id="">
-                                <option value="0">seleccióne Perfil</option>
+                                <option value="0" disabled selected>Seleccióne Perfil...</option>
                             </select>
                             <span class="focus-input-from"></span>
                         </div>
@@ -49,7 +49,10 @@
                     <div class="col-xs-12 col-md-6 col-lg-12" id="ta">
                     <div class="from-input">
                         <select class="input-from" name="" id="">
-                            <option value="0">selección Empresa</option>
+                            <option value="0" disabled selected>Seleccióne Empresa...</option>
+                            <option *ngFor="let dataEmpresa of DataEmpresa" [value]="dataEmpresa.IdOperaciones">
+                                {{dataEmpresa.Nombre}}
+                            </option>
                         </select>
                         <span class="focus-input-from "></span>
                     </div>
