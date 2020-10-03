@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsuariosComponent } from './Components/Maestros/Usuarios/usuarios/usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EnvironmentService } from './Services/Enviroment/enviroment.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { EnvironmentService } from './Services/Enviroment/enviroment.service';
   ],
   imports: [
     routing,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),

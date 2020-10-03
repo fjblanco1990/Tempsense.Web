@@ -8,3 +8,7 @@ body {
     background-size: 800px;
     background-position: 134% 404%;
 }
+
+.validationSpan{
+    color: #DF0101;
+}

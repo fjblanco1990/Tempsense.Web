@@ -22,9 +22,26 @@ body {
     
 }
 
-.bussines {
+.bussines-img1 {
+    width: 38%;
+    margin-top: 19% !important;
+} 
+.bussines-img2 {
     width: 35%;
 } 
+.bussines-img3 {
+    width: 17.8%;
+} 
+.bussines-img4 {
+    width: 33%;
+} 
+.bussines-img5 {
+    width: 35%;
+} 
+.bussines-img6 {
+    width: 35%;
+} 
+
 
 .logo{
 
@@ -53,9 +70,12 @@ body {
 }
 
 .contenedorPpal {
-    margin: 0px 10%;
-    margin-top: 5%;
-    margin-bottom: 8%;
+    /* margin: 0px 8%;
+    margin-top: -90px; */
+        /* margin: 0px 8%; */
+    margin-top: -90px;
+    /* margin-right: -39px; */
+    margin-left: 20%;
 }
 
 #contenedorInterno{
@@ -71,7 +91,7 @@ body {
     clear: both;
 }
 
-.bussines{
+.bussines-img-all{
     margin: 10% 25%;
 }
 
@@ -82,7 +102,17 @@ body {
 }
 
 .IconUser{
-    width: 50px;
+    width: 28px;
+    margin-left: 4px;
+    margin-top: 9px;
+}
+.IconUser:hover{
+    width: 30px;
+    margin-left: 4px;
+    margin-top: 9px;
+    width: 30px;
+    margin-left: 3px;
+    margin-top: 8px;
 }
 
 .btnInicio{
@@ -106,6 +136,7 @@ body {
     -moz-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
     box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
 }
+
 .btnDegraddo:hover {
 
     background: rgb(255, 175, 69);
@@ -132,6 +163,8 @@ body {
     box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
 }
 
+
+
 .degradientBoton:hover {
  
     background: rgba(255,152,17,1);
@@ -145,7 +178,7 @@ body {
 
   }
 
-  .btn1{
+.btn1{
     margin-right: 0.5%;
     width: 100%;
     text-align: center;
@@ -220,7 +253,6 @@ body {
     margin-bottom: 10%;
 }
 
-
 .btn7{
 
     margin-right: 0.5%;
@@ -233,7 +265,6 @@ body {
     margin-bottom: 10%;
 }
 
-
 .btn8{
 
     width: 100%;
@@ -244,7 +275,6 @@ body {
     cursor: pointer;
     margin-bottom: 10%;
 }
-
 
 footer{
 
@@ -291,4 +321,74 @@ footer{
 .menu-drop {
     padding: 15px;
     color: rgba(150,16,30,1);
+}
+/*Hover para los div*/
+*{
+    margin: 0px;
+    padding: 0px 0px 15px;
+    color: white;
+}
+
+div#imgen {
+    width: 367px;
+    background: rgba(150,16,30,1);
+    background: -moz-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(150,16,30,1)), color-stop(100%, rgba(193,22,38,1)));
+    background: -webkit-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    background: linear-gradient(45deg, rgba(150,16,30,1) 0%, rgba(193,22,38,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96101e', endColorstr='#c11626', GradientType=1 );
+    -webkit-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    box-shadow: -1px -1px 31px -5px rgba(0,0,0,0.52);
+    float: left;
+    border-radius: 0.3em;
+    height: 240px;
+    cursor: pointer;
+}
+
+div#info {
+    position: absolute;
+    overflow: hidden;
+    width: 367px;
+    background-color: rgba(255, 152, 17, 0.9);
+    -webkit-transition: opacity 0.2s;
+    opacity: 0;
+    font-size: 20px;
+    float: left;
+    border-radius: 0.3em;
+    height: 94%;;
+}
+
+div#imgen:hover div#info {
+    opacity: 1;
+    
+}
+
+p#headline {
+    position: absolute;
+    margin-top: 20px;
+    -webkit-transition: margin 0.2s;
+    margin-left: -70px;
+    font-size: 21px;
+}
+
+div#imgen:hover p#headline {
+    margin-left: 139px;
+}
+
+p#infoInt {
+    margin: auto;
+    width: 350px;
+    text-align: center;
+    -webkit-transition: margin 0.3s;
+    margin-top: 160px;
+    font-size: 14px;
+    text-align: justify;
+    padding: 21px;
+}
+
+div#imgen:hover p#infoInt {
+    margin-top: 70px;
 }

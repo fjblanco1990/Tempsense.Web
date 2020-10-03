@@ -1,3 +1,4 @@
+<form method="get" [formGroup]="loginFrom">
     <div class="page" *ngIf="!MostrarRegistro">
         <div class="container">
             <div class="left">
@@ -22,9 +23,10 @@
                 </svg>
                 <div class="form">
                     <label for="email"></label>
-                    <input type="email" placeholder="Email" class="input-login" id="email">
+                    <input type="email" placeholder="Email" class="input-login" id="email" formControlName="Email">
                     <label for="password"></label>
-                    <input type="password" placeholder="Contraseña" class="input-login" id="password">
+                   
+                    <input type="password" placeholder="Contraseña" class="input-login" id="password" formControlName="password">
                     <input type="submit" class="btn-login" value="Iniciar sesion" (click)="IniciarSesion()">
                     <!-- <input type="submit" class="btn-login" value="Registrar usuarios" (click)="RegistrarUsuarios()"> -->
                     <div class="col-xs-12 col-md-3 col-lg-2 btnInicio">
@@ -32,7 +34,7 @@
                             <li class="dropdown" dropdown>
                                 <a class="logoIntel" data-toggle="tooltip" data-placement="bottom" title="Registrar usuarios" (click)="RegistrarUsuarios()">
                                     <!-- href="{{url}}/Crear-Usuarios" -->
-                                    <img class="IconUser" src="../../../../assets/images/add.svg" alt="add usuario">
+                                    <img class="IconUser" src="../../../../assets/images/plus.svg" alt="add usuario">
                                 </a>
                             </li>
                         </div>
@@ -41,7 +43,7 @@
             </div>
         </div>
     </div>
-
+</form>
     <app-usuarios *ngIf="MostrarRegistro" (emitEventClose)="recibirFormUsuario($event)"></app-usuarios>
     
 

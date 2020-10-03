@@ -212,9 +212,9 @@ iframe {
   width: 40%;
   background: #fff;
   border-radius: 2px;
-  padding: 82px 55px 33px 55px;
+  padding: 28px 55px 33px 55px;
   position: absolute;
-  height: 850px;
+  height: auto;
 }
 
 
@@ -369,6 +369,16 @@ textarea.input-from  {
         position: absolute;
         height: 850px;
     }
+    .title_from_contact{
+      display: block;
+      width: 100%;
+      font-family: 'Gayathri', sans-serif;
+      font-size: 39px;
+      color: #333333;
+      line-height: 1.2;
+      text-align: left;
+      padding-bottom: 64px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -376,9 +386,9 @@ textarea.input-from  {
     width: 90%;
     background: #fff;
     border-radius: 2px;
-    padding: 82px 55px 33px 55px;
+    padding: 0px 55px 33px 55px;
     position: absolute;
-    height: 850px;
+    height: auto;
  }
  .contenedor-fomulario {
      width: 100%;
@@ -403,6 +413,17 @@ textarea.input-from  {
     color: wheat;
     margin: 8px 80px 6px;
     font-size: 20px;
+}
+.title_from_contact{
+  display: block;
+  width: 100%;
+  font-family: 'Gayathri', sans-serif;
+  font-size: 39px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: left;
+  padding-bottom: 0px;
+  padding-top: 60px;
 }
 
 }

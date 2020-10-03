@@ -6,7 +6,7 @@ import { HomeComponent } from '../Components/Home/home/home.component';
 import { UsuariosComponent } from '../Components/Maestros/Usuarios/usuarios/usuarios.component';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'Login', pathMatch: 'full'},
+    { path: '', redirectTo: 'Home', pathMatch: 'full'},
     { path: 'Login', component: LoginComponent},
     { path: 'Crear-Usuarios', component: UsuariosComponent },
     { path: 'Home', component: HomeComponent},
