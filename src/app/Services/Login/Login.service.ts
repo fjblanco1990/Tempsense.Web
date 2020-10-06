@@ -24,5 +24,25 @@ export class LoginService {
         return this._http.post(this.url, Datos, httpOptions);
     }
 
+    CerrarSesion(Datos: any): Observable<any> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json;charset=UTF-8',
+            })
+        };
+        this.url = this.envirment.Url + '/CerrarSesionUsuario';
+        return this._http.post(this.url, Datos, httpOptions);
+    }
 
+    ValidarSesionActiva(Datos: any): Observable<any> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json;charset=UTF-8',
+            })
+        };
+        this.url = this.envirment.Url + '/ValidarSessionUsuario';
+        return this._http.post(this.url, Datos, httpOptions);
+    }
+
+    
 }

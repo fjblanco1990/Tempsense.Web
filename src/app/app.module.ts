@@ -12,13 +12,25 @@ import { UsuariosComponent } from './Components/Maestros/Usuarios/usuarios/usuar
 import { HttpClientModule } from '@angular/common/http';
 import { EnvironmentService } from './Services/Enviroment/enviroment.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmpresasComponent } from './Components/empresas/empresas.component';
+import { SedesComponent } from './Components/sedes/sedes.component';
+import { DispositivosComponent } from './Components/dispositivos/dispositivos.component';
+import { ReportesComponent } from './Components/reportes/reportes.component';
+import { TablerosComponent } from './Components/tableros/tableros.component';
+import { UmbralComponent } from './Components/umbral/umbral.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    EmpresasComponent,
+    SedesComponent,
+    DispositivosComponent,
+    ReportesComponent,
+    TablerosComponent,
+    UmbralComponent
   ],
   imports: [
     routing,

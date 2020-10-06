@@ -311,6 +311,7 @@ footer{
 .dropdown-menu > a {
     text-decoration: none;
     color: #333333;
+    cursor: pointer;
 }
 
 .dropdown-menu > li > a:hover {
@@ -321,6 +322,7 @@ footer{
 .menu-drop {
     padding: 15px;
     color: rgba(150,16,30,1);
+    cursor: pointer;
 }
 /*Hover para los div*/
 *{

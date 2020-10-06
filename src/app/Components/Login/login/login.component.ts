@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service';
 import { LoginService } from 'src/app/Services/Login/Login.service';
 
@@ -14,11 +15,16 @@ export class LoginComponent implements OnInit {
   public url ='http://localhost:4200';
   public MostrarRegistro = false;
   public loginFrom: any;
-  constructor(private LoginService: LoginService, private notificacionesService: NotificacionesService) { }
+  constructor(private LoginService: LoginService, private notificacionesService: NotificacionesService, private router: Router) { }
 
   ngOnInit(): void {
      this.MostrarRegistro = false;
      this.validarLogin();
+    
+      window.location.hash = "no-back-button";
+      window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+      window.onhashchange = function () { window.location.hash = "no-back-button"; }
+    
   }
 
   IniciarSesion() {
@@ -26,7 +32,9 @@ export class LoginComponent implements OnInit {
       this.LoginService.CrearSesion(JSON.stringify(this.loginFrom.value)).subscribe(
         resutl => {
           if(resutl.Token !== null) {
-            window.location.href = 'http://localhost:4200/Home';
+            localStorage.setItem('InfoLogin', window.btoa(unescape(encodeURIComponent(JSON.stringify(resutl)))));
+             window.location.href = 'http://localhost:4200/Home';
+            // this.router.navigateByUrl('/Home');
           } else {
             this.notificacionesService.Advertencia(resutl.Mensaje);
             this.loginFrom.reset();
