@@ -1,5 +1,5 @@
 import { PlatformLocation } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './Services/Login/Login.service';
 
@@ -14,26 +14,18 @@ export class AppComponent implements OnInit {
   title = 'Tempsense';
   public DatosUsuario;
   public resulStore;
+  //#region variables
+  // public mostrarLayout = true;
+  @Output() mostrarLayout = false;
+  //#endregion
   constructor(private LoginService: LoginService, private router: Router, private location: PlatformLocation) {
   }
 
   ngOnInit() {
-
-    //   if (localStorage.getItem('InfoLogin') !== null) {
-    //     this.DatosUsuario = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
-    //     if (localStorage.getItem('InfoLogin') !== null) {
-    //       this.resulStore = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
-    //     } else {
-    //       this.router.navigateByUrl('/Login');
-    //       localStorage.clear();
-    //     }
-
-    //   this.location.onPopState(() => {
-        
-        
-    //   });
-    // }
+    this.mostrarLayout = false;
   }
+
+
 
 
 }

@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
         resutl => {
           if(resutl.Token !== null) {
             localStorage.setItem('InfoLogin', window.btoa(unescape(encodeURIComponent(JSON.stringify(resutl)))));
-             window.location.href = 'http://localhost:4200/Home';
-            // this.router.navigateByUrl('/Home');
+             window.location.href = 'http://localhost:4200/';
           } else {
             this.notificacionesService.Advertencia(resutl.Mensaje);
             this.loginFrom.reset();

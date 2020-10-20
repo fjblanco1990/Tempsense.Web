@@ -1,1 +1,92 @@
-<p>sedes works!</p>
+<app-header></app-header>
+
+<div class="contenedor-form">
+    <h1>Empresas</h1>
+    <form method="get" [formGroup]="empresaFrom">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Nombre empresa</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre empresa">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Correo</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="correo">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Abrebiatura</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="abrebiatura">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Nit</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="activoCheck">
+                    <label class="form-check-label" for="activoCheck">
+                        Actvio
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="correoCheck">
+                    <label class="form-check-label" for="correoCheck">
+                        Notificación por correo
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="MSMCheck">
+                    <label class="form-check-label" for="MSMCheck">
+                        Notificacion por MSM
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-danger">Guardar</button>
+    </form>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col"># Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Abrebiatura</th>
+                <th scope="col">Nit</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Not. Correo</th>
+                <th scope="col">Not. MSM</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let itemEmpresa of DataEmpresa; let i=index">
+            <tr>
+                <td scope="row">{{itemEmpresa.IdEmpresa}}</td>
+                <td>{{itemEmpresa.Nombre}}</td>
+                <td>{{itemEmpresa.Abr_Empresa}}</td>
+                <td>{{itemEmpresa.Nit}}</td>
+                <td>{{itemEmpresa.Correo}}</td>
+                <td>
+                    {{itemEmpresa.Activo}}
+                </td>
+                <td>@{{itemEmpresa.NotificaPorCorreo}}</td>
+                <td>@{{itemEmpresa.NotificaPorMSM}}</td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<app-footer></app-footer>

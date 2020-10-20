@@ -1,58 +1,56 @@
 <app-header></app-header>
 
 <div class="contenedor-form">
-    <h1 class="titleForm">Dispositivos</h1>
+    <h1 class="titleForm">Bitacoras</h1>
     <form method="get" [formGroup]="empresaFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Nombre </label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre dispositivo">
+                <label for="inputEmail4">Fecha</label>
+                <input type="date" class="form-control" id="inputEmail4" placeholder="nombre empresa">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Medida</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="medida">
+                <label for="inputEmail4">Hora inicio</label>
+                <input type="time" class="form-control" id="inputEmail4" placeholder="correo">
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Empresa</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="empresa">
+                <label for="inputPassword4">Hora fin</label>
+                <input type="time" class="form-control" id="inputPassword4" placeholder="abrebiatura">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Sede</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="sede">
+                <label for="inputEmail4">Dispositivo</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Tiempo notificación</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="empresa">
+                <label for="inputEmail4">Evento</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group col-md-6">
-                <div class="form-check" style="margin-top: 50px; margin-left: 5px;">
-                    <input class="form-check-input" type="checkbox" id="activoCheck">
-                    <label class="form-check-label" for="activoCheck">
-                        Actvio
-                    </label>
-                </div>
+                <label for="inputEmail4">Solución</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
         </div>
 
 
-
-        <button type="submit" class="btn btn-danger" style="background: rgba(150,16,30,1);">Guardar</button>
+        <button type="submit" class="btn btn-danger">Guardar</button>
     </form>
     <br>
     <table class="table">
         <thead class="thead-light">
             <tr>
+                <th scope="col"># Codigo</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Dispositivo</th>
+                <th scope="col">Abrebiatura</th>
                 <th scope="col">Nit</th>
-                <th scope="col">Id Dispositivo</th>
+                <th scope="col">Correo</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Not. Correo</th>
+                <th scope="col">Not. MSM</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
@@ -66,7 +64,8 @@
                 <td>
                     {{itemEmpresa.Activo}}
                 </td>
-       
+                <td>@{{itemEmpresa.NotificaPorCorreo}}</td>
+                <td>@{{itemEmpresa.NotificaPorMSM}}</td>
 
             </tr>
 

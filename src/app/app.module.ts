@@ -18,6 +18,11 @@ import { DispositivosComponent } from './Components/dispositivos/dispositivos.co
 import { ReportesComponent } from './Components/reportes/reportes.component';
 import { TablerosComponent } from './Components/tableros/tableros.component';
 import { UmbralComponent } from './Components/umbral/umbral.component';
+import { LayoutComponent } from './Components/Layout/layout/layout.component';
+import { PaginaErrorComponent } from './Components/pagina-error/pagina-error.component';
+import { HeaderComponent } from './Components/Layout/header/header.component';
+import { FooterComponent } from './Components/Layout/footer/footer.component';
+import { BitacoraComponent } from './Components/bitacora/bitacora.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { UmbralComponent } from './Components/umbral/umbral.component';
     DispositivosComponent,
     ReportesComponent,
     TablerosComponent,
-    UmbralComponent
+    UmbralComponent,
+    LayoutComponent,
+    PaginaErrorComponent,
+    HeaderComponent,
+    FooterComponent,
+    BitacoraComponent
   ],
   imports: [
     routing,

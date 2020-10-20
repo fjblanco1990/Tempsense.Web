@@ -1,1 +1,76 @@
-<p>reportes works!</p>
+<app-header></app-header>
+
+<div class="contenedor-form">
+    <h1 class="titleForm">Reporte</h1>
+    <form method="get" [formGroup]="empresaFrom">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Fecha inicio</label>
+                <input type="date" class="form-control" id="inputEmail4" placeholder="nombre empresa">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Fecha fin</label>
+                <input type="time" class="form-control" id="inputEmail4" placeholder="correo">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Filtro</label>
+                <input type="time" class="form-control" id="inputPassword4" placeholder="abrebiatura">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Empresa</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Sensor</label>
+                <label for="exampleFormControlTextarea1"></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-danger">Guardar</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col"># Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Abrebiatura</th>
+                <th scope="col">Nit</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Not. Correo</th>
+                <th scope="col">Not. MSM</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let itemEmpresa of DataEmpresa; let i=index">
+            <tr>
+                <td scope="row">{{itemEmpresa.IdEmpresa}}</td>
+                <td>{{itemEmpresa.Nombre}}</td>
+                <td>{{itemEmpresa.Abr_Empresa}}</td>
+                <td>{{itemEmpresa.Nit}}</td>
+                <td>{{itemEmpresa.Correo}}</td>
+                <td>
+                    {{itemEmpresa.Activo}}
+                </td>
+                <td>@{{itemEmpresa.NotificaPorCorreo}}</td>
+                <td>@{{itemEmpresa.NotificaPorMSM}}</td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<app-footer></app-footer>

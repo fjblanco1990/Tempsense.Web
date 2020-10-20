@@ -3,13 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
 
 @Component({
-  selector: 'app-reportes',
-  templateUrl: './reportes.component.html',
-  styleUrls: ['./reportes.component.css'],
+  selector: 'app-bitacora',
+  templateUrl: './bitacora.component.html',
+  styleUrls: ['./bitacora.component.css'],
   providers: [EmpresasService]
 })
-export class ReportesComponent implements OnInit {
-
+export class BitacoraComponent implements OnInit {
 
 
   public DataEmpresa: any;

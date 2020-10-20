@@ -1,0 +1,29 @@
+<div class="contenedorlogo">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-xs-12 col-md-2 col-lg-2" [routerLink]="['/']">
+                <a href="#" class="logoIntel"><img class="logo" src="../../../../../assets/images/LogoIntelControl-2.png"
+                        alt="logo Intel control"></a>
+            </div>
+            <div class="col-xs-12 col-md-7 col-lg-8" style="text-align: center;" [routerLink]="['/']">
+                <a href="#" class="logoIntel"><img class="logoTemp" src="../../../../../assets/images/Logo_tempsense-02.svg"
+                        alt="logo Intel control"></a>
+            </div>
+            <div class="col-xs-12 col-md-3 col-lg-2 btnInicio">
+                <div class="btn-group">
+                    <li class="dropdown" dropdown>
+                        <a dropdownToggle role="button">
+                            <img class="IconUser" src="../../../../../assets/images/usuario.svg"
+                                alt="usuario Intel control">
+                        </a>
+                        <ul *dropdownMenu class="dropdown-menu">
+                            <li><a href="#" class="menu-drop">Perfil</a></li>
+                            <li><a class="menu-drop" (click)="CerrarSesion()"> Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
