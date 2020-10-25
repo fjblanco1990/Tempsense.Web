@@ -1,1 +1,225 @@
-<p>tableros works!</p>
+<app-header></app-header>
+
+<div class="contenedor-form">
+    <h1 class="titleForm">Tableros</h1>
+    <form method="get" [formGroup]="empresaFrom">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Empresa</label>
+                <select class="form-control">
+                    <option>-- Seleccione --</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Sede</label>
+                <select class="form-control">
+                    <option>-- Seleccione --</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-7" style="margin-left: 72px;"></div>
+            <div class="form-group col-md-1 organizaLabel" style="background: #28a745;">
+                <label for="" class="lableTablero">Estable.</label>
+            </div>
+            <div class="form-group col-md-1 organizaLabel" style="background: #ffc107;">
+                <label for="" class="lableTablero">Tolerancia.</label>
+            </div>
+            <div class="form-group col-md-1 organizaLabel" style="background: #dc3545;"> 
+                <label for="" class="lableTablero">Alerta</label>
+            </div>
+            <div class="form-group col-md-1 organizaLabel" style="background: #343a40;">
+                <label for="" class="lableTablero">Apagado.</label>
+            </div>
+        </div>
+    
+        <div class="col-xs-12 col-md-12 col-lg-12" style="padding-bottom: 10px; margin: 10px 10px 10px 70px;">
+            <!-- Asi lo viviras -->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div id="imgen" class="divImgDanger">
+                       
+                        <div id="info">
+                            <p id="headline" >-50°</p>
+                            <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                            <p id="infoInt1">NeveraCIP</p>
+                            <p id="infoInt2">Temperatura C°</p>
+                   
+                            <div style="    background: #fd8591; height: 51px; text-align: center; width: 100%;">
+                                <button type="submit" style="margin-top: 6px;" class="btn btn-danger btnOscuroAlert"><i class="far fa-chart-bar"></i> Gráfica</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div id="imgen" class="divImgSucces">
+                    
+                        <div id="info">
+                            <p id="headline" >21.3°</p>
+                            <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                            <p id="infoInt1">NeveraCIP</p>
+                            <p id="infoInt2">Temperatura C°</p>
+                            <div style="    background: #a1e4b0;
+                                height: 51px;
+                                text-align: center;
+                                width: 100%;">
+                   
+                                        <button type="submit" style="margin-top: 6px;" class="btn btn-success btnOscuroSucces"><i class="far fa-chart-bar"></i> Gráfica</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div id="imgen" class="divImgwarnign">
+                    
+                        <div id="info">
+                            <p id="headline" >27°</p>
+                            <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                            <p id="infoInt1">NeveraCIP</p>
+                            <p id="infoInt2">Temperatura C°</p>
+                            <div style="    background: #f9d874;
+                                                            height: 51px;
+                                                            text-align: center;
+                                                            width: 100%;">
+                            
+                                <!-- <button type="submit" style="margin-top: 6px;" class="btn btn-success btnOscuroSucces">
+                                    <i class="far fa-chart-bar"></i> Gráfica</button> -->
+                                <button type="submit" style="margin-top: 6px;" class="btn btn-warning btnOscuroYellow">
+                                    <i class="far fa-chart-bar"></i> Gráfica</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12" style="padding-bottom: 10px; margin: 10px 10px 10px 70px;">
+            <!-- Asi lo viviras -->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div id="imgen" class="divImgBlack">
+                
+                        <div id="info">
+                            <p id="headline" >0°</p>
+                            <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                            <p id="infoInt1">NeveraCIP</p>
+                            <p id="infoInt2">Temperatura C°</p>
+                            <div style=" background:#636363; height: 51px; text-align: center; width: 100%;">
+                                <button type="submit" style="margin-top: 6px;" class="btn btn-dark btnOscuro">
+                                    <i class="far fa-chart-bar"></i> Gráfica</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div id="imgen" class="divImgSucces">
+                
+                        <div id="info">
+                            <p id="headline">100.3°</p>
+                            <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                            <p id="infoInt1">NeveraCIP</p>
+                            <p id="infoInt2">Temperatura C°</p>
+                            <div style="    background: #a1e4b0;
+                                                height: 51px;
+                                                text-align: center;
+                                                width: 100%;">
+                
+                                <button type="submit" style="margin-top: 6px;" class="btn btn-success btnOscuroSucces"><i
+                                        class="far fa-chart-bar"></i> Gráfica</button>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div id="imgen" class="divImgBlack">
+                
+                        <div id="info">
+                            <p id="headline">0°</p>
+                            <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                            <p id="infoInt1">NeveraCIP</p>
+                            <p id="infoInt2">Temperatura C°</p>
+                            <div style=" background:#636363; height: 51px; text-align: center; width: 100%;">
+                                <button type="submit" style="margin-top: 6px;" class="btn btn-dark btnOscuro">
+                                    <i class="far fa-chart-bar"></i> Gráfica</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12" style="padding-bottom: 10px; margin: 10px 10px 10px 70px;">
+            <!-- Asi lo viviras -->
+            <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div id="imgen" class="divImgDanger">
+            
+                    <div id="info">
+                        <p id="headline">-50°</p>
+                        <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                        <p id="infoInt1">NeveraCIP</p>
+                        <p id="infoInt2">Temperatura C°</p>
+            
+                        <div style="    background: #fd8591; height: 51px; text-align: center; width: 100%;">
+                            <button type="submit" style="margin-top: 6px;" class="btn btn-danger btnOscuroAlert"><i
+                                    class="far fa-chart-bar"></i> Gráfica</button>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div id="imgen" class="divImgSucces">
+            
+                    <div id="info">
+                        <p id="headline">21.3°</p>
+                        <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                        <p id="infoInt1">NeveraCIP</p>
+                        <p id="infoInt2">Temperatura C°</p>
+                        <div style="    background: #a1e4b0;
+                                            height: 51px;
+                                            text-align: center;
+                                            width: 100%;">
+            
+                            <button type="submit" style="margin-top: 6px;" class="btn btn-success btnOscuroSucces"><i
+                                    class="far fa-chart-bar"></i> Gráfica</button>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div id="imgen" class="divImgwarnign">
+            
+                    <div id="info">
+                        <p id="headline">27°</p>
+                        <p><i class="fas fa-thermometer-half" style="font-size: 60px;"></i></p>
+                        <p id="infoInt1">NeveraCIP</p>
+                        <p id="infoInt2">Temperatura C°</p>
+                        <div style="    background: #f9d874;
+                                                                        height: 51px;
+                                                                        text-align: center;
+                                                                        width: 100%;">
+            
+                            <!-- <button type="submit" style="margin-top: 6px;" class="btn btn-success btnOscuroSucces">
+                                                <i class="far fa-chart-bar"></i> Gráfica</button> -->
+                            <button type="submit" style="margin-top: 6px;" class="btn btn-warning btnOscuroYellow">
+                                <i class="far fa-chart-bar"></i> Gráfica</button>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </form>
+  <br><br><br>
+    
+</div>
+
+<app-footer></app-footer>

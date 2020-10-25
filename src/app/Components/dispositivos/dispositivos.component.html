@@ -17,11 +17,15 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Empresa</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="empresa">
+                <select class="form-control">
+                    <option>-- Seleccione --</option>
+                </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Sede</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="sede">
+                <select class="form-control">
+                    <option>-- Seleccione --</option>
+                </select>
             </div>
 
         </div>
@@ -40,9 +44,11 @@
             </div>
         </div>
 
-
-
-        <button type="submit" class="btn btn-danger" style="background: rgba(150,16,30,1);">Guardar</button>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-danger backOscuro">Guardar</button>
+            </div>
+        </div>
     </form>
     <br>
     <table class="table">

@@ -7,3 +7,8 @@
 .titleForm {
    color: rgba(150,16,30,1);
 }
+
+.backOscuro {
+    background: rgba(150,16,30,1); 
+    border-color:  rgba(150,16,30,1);
+}

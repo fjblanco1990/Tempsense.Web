@@ -1,0 +1,94 @@
+.contenedor-form {
+    margin: -3% auto;
+    width: 60%;
+
+}
+
+.titleForm {
+   color: rgba(150,16,30,1);
+}
+
+.lableTablero {
+    color: white;
+    text-align: center;
+    margin-top: 11px;
+}
+
+ .organizaLabel {
+    margin-left: 0px;
+    margin-right: 6px;
+    text-align: center;
+ }
+
+ .divImgDanger {
+    height: 350px;
+    cursor: pointer;
+    border: 1px solid red;
+    width: 65%;
+    background: #dc3545;
+    color: white;
+    text-align: center;
+}
+
+.divImgSucces {
+    height: 350px;
+    cursor: pointer;
+    border: 1px solid green;
+    width: 65%;
+    background:#29A745;
+    color: white;
+    text-align: center;
+}
+
+.divImgwarnign {
+    height: 350px;
+    cursor: pointer;
+    border: 1px solid yellow;
+    width: 65%;
+    background: #ffc107;
+    color: white;
+    text-align: center;
+}
+
+
+.divImgBlack {
+    height: 350px;
+    cursor: pointer;
+    border: 1px solid black;
+    width: 65%;
+    background: #343a40;
+    color: white;
+    text-align: center;
+}
+
+#info {
+    margin-top: 50px;
+}
+
+#headline {
+    font-size: 50px;
+}
+
+#infoInt1 {
+
+}
+
+#infoInt2 {
+
+}
+
+.btnOscuroAlert {
+    background: #9a0211;
+}
+
+.btnOscuroSucces {
+    background: #036118;
+}
+
+.btnOscuroYellow {
+    background: #dea600;
+}
+
+.btnOscuro {
+    background: black;
+}

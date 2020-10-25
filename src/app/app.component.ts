@@ -1,6 +1,7 @@
 import { PlatformLocation } from '@angular/common';
 import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ValidarSesionModel } from './Models/Login-Model/login.model';
 import { LoginService } from './Services/Login/Login.service';
 
 
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   public resulStore;
   //#region variables
   // public mostrarLayout = true;
+  public ValidarSesionModel = new ValidarSesionModel();
   @Output() mostrarLayout = false;
   //#endregion
   constructor(private LoginService: LoginService, private router: Router, private location: PlatformLocation) {
@@ -24,8 +26,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.mostrarLayout = false;
   }
-
-
-
 
 }

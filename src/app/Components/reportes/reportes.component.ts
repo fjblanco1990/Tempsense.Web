@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
+declare var $: any;
 
 @Component({
   selector: 'app-reportes',
@@ -19,6 +20,7 @@ export class ReportesComponent implements OnInit {
   ngOnInit(): void {
     this.validarEmpresas();
     this.GetAllEmpresas();
+    $('#example').DataTable();
   }
 
 

@@ -23,6 +23,7 @@ import { PaginaErrorComponent } from './Components/pagina-error/pagina-error.com
 import { HeaderComponent } from './Components/Layout/header/header.component';
 import { FooterComponent } from './Components/Layout/footer/footer.component';
 import { BitacoraComponent } from './Components/bitacora/bitacora.component';
+// import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { BitacoraComponent } from './Components/bitacora/bitacora.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    // DataTablesModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [appRoutingProviders, EnvironmentService],
