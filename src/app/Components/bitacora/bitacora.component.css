@@ -1,7 +1,9 @@
 .contenedor-form {
     margin: -3% auto;
     width: 60%;
-
+    border: 1px solid #E1E1E1;
+    border-radius: 0.2em;
+    padding: 25px;
 }
 
 .titleForm {

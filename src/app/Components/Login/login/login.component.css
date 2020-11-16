@@ -15,7 +15,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
-  height: 937px;
+  height: 1041px;
   position: absolute;
   place-content: center;
   width: 100%;
@@ -33,7 +33,7 @@ body {
   }
 @media (max-width: 767px) {
   .page {
-    height: auto;
+    height: 1041px;
     margin-bottom: 20px;
     padding-bottom: 20px;
   }

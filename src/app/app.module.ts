@@ -23,6 +23,12 @@ import { PaginaErrorComponent } from './Components/pagina-error/pagina-error.com
 import { HeaderComponent } from './Components/Layout/header/header.component';
 import { FooterComponent } from './Components/Layout/footer/footer.component';
 import { BitacoraComponent } from './Components/bitacora/bitacora.component';
+import { ConfiguracionComponent } from './Components/configuracion/configuracion.component';
+import { UserConfigComponent } from './Components/configuracion/user-config/user-config.component';
+import { EmpresasConfigComponent } from './Components/configuracion/empresas-config/empresas-config.component';
+import { UmbralConfigComponent } from './Components/configuracion/umbral-config/umbral-config.component';
+import { BitacorasConfigComponent } from './Components/configuracion/bitacoras-config/bitacoras-config.component';
+import { DispositvosConfigComponent } from './Components/configuracion/dispositvos-config/dispositvos-config.component';
 // import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
 
 @NgModule({
@@ -41,7 +47,13 @@ import { BitacoraComponent } from './Components/bitacora/bitacora.component';
     PaginaErrorComponent,
     HeaderComponent,
     FooterComponent,
-    BitacoraComponent
+    BitacoraComponent,
+    ConfiguracionComponent,
+    UserConfigComponent,
+    EmpresasConfigComponent,
+    UmbralConfigComponent,
+    BitacorasConfigComponent,
+    DispositvosConfigComponent
   ],
   imports: [
     routing,

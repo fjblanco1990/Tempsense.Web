@@ -1,0 +1,79 @@
+<div class="contenedor-form">
+    <h1 class="titleForm">Dispositivos</h1>
+    <form method="get" [formGroup]="empresaFrom">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Nombre </label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre dispositivo">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Medida</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="medida">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Empresa</label>
+                <select class="form-control">
+                    <option>-- Seleccione --</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Sede</label>
+                <select class="form-control">
+                    <option>-- Seleccione --</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Tiempo notificación</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="empresa">
+            </div>
+            <div class="form-group col-md-6">
+                <div class="form-check" style="margin-top: 50px; margin-left: 5px;">
+                    <input class="form-check-input" type="checkbox" id="activoCheck">
+                    <label class="form-check-label" for="activoCheck">
+                        Actvio
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-danger backOscuro">Guardar</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Dispositivo</th>
+                <th scope="col">Nit</th>
+                <th scope="col">Id Dispositivo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let itemEmpresa of DataEmpresa; let i=index">
+            <tr>
+                <td scope="row">{{itemEmpresa.IdEmpresa}}</td>
+                <td>{{itemEmpresa.Nombre}}</td>
+                <td>{{itemEmpresa.Abr_Empresa}}</td>
+                <td>{{itemEmpresa.Nit}}</td>
+                <td>{{itemEmpresa.Correo}}</td>
+                <td>
+                    {{itemEmpresa.Activo}}
+                </td>
+       
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>

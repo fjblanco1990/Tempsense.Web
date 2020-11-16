@@ -14,6 +14,7 @@ import { LayoutComponent } from '../Components/Layout/layout/layout.component';
 import { PaginaErrorComponent } from '../Components/pagina-error/pagina-error.component';
 import { SedesComponent } from '../Components/sedes/sedes.component';
 import { BitacoraComponent } from '../Components/bitacora/bitacora.component';
+import { ConfiguracionComponent } from '../Components/configuracion/configuracion.component';
 
 const appRoutes: Routes = [
     { path: 'Login', redirectTo: '/Login'},
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
     { path: 'Umbral', component: UmbralComponent},
     { path: 'Bitacora', component: BitacoraComponent },
     { path: 'Sedes', component: SedesComponent },
+    { path: 'Config', component: ConfiguracionComponent },
     { path: '', component: LayoutComponent },
     { path: '*', component: PaginaErrorComponent }
 ];

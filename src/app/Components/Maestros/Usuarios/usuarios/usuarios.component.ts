@@ -69,6 +69,7 @@ export class UsuariosComponent implements OnInit {
       control.markAsTouched({ onlySelf: true });       // {3}
     });
   }
+  
   validarUsuarios() {
     const IdUsuario = new FormControl('', [])
     const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);

@@ -6,12 +6,12 @@ import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service
 import { LoginService } from 'src/app/Services/Login/Login.service';
 
 @Component({
-  selector: 'app-empresas',
-  templateUrl: './empresas.component.html',
-  styleUrls: ['./empresas.component.css'],
+  selector: 'app-empresas-config',
+  templateUrl: './empresas-config.component.html',
+  styleUrls: ['./empresas-config.component.css'],
   providers: [EmpresasService, LoginService, NotificacionesService]
 })
-export class EmpresasComponent implements OnInit {
+export class EmpresasConfigComponent implements OnInit {
   public DataEmpresa: any;
   public empresaFrom: any;
   public ValidarSesionModel = new ValidarSesionModel();
@@ -45,7 +45,7 @@ export class EmpresasComponent implements OnInit {
     } else {
       this.ValidarErrorForm(this.empresaFrom);
     }
-   
+
   }
 
   ActualizarEmpresa() {
@@ -128,7 +128,7 @@ export class EmpresasComponent implements OnInit {
     const Activo = new FormControl('', []);
     const NotificaPorCorreo = new FormControl('', []);
     const NotificaPorMSM = new FormControl('', []);
-  
+
     this.empresaFrom = new FormGroup({
       IdEmpresa: IdEmpresa,
       Nombre: Nombre,
