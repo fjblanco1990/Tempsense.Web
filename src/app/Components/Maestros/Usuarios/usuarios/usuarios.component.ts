@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
 import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service';
 import { PerfilesService } from 'src/app/Services/Perfiles/Perfiles.service';
+import { SedesService } from 'src/app/Services/Sedes/Sedes.service';
 import { UsuariosService } from 'src/app/Services/Usuarios/Usuarios.service';
 // import Swal from 'sweetalert2';
 
@@ -10,17 +11,19 @@ import { UsuariosService } from 'src/app/Services/Usuarios/Usuarios.service';
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css'],
-  providers: [UsuariosService, EmpresasService, PerfilesService, NotificacionesService]
+  providers: [UsuariosService, EmpresasService, SedesService, PerfilesService, NotificacionesService]
 })
 export class UsuariosComponent implements OnInit {
   //#region Variables carga
   public DataEmpresa: any;
+  public DataSedes: any;
   public DataPerfiles: any;
   public usuariosFrom: any;
   //#endregion
   @Output() emitEventClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(public usuariosService: UsuariosService, public PerfilesService: PerfilesService, public empresasService: EmpresasService, private notificacionesService: NotificacionesService) { }
+  constructor(public usuariosService: UsuariosService, public PerfilesService: PerfilesService, public empresasService: EmpresasService, 
+    private notificacionesService: NotificacionesService, public SedesService: SedesService) { }
 
   ngOnInit(): void {
     this.validarUsuarios();
@@ -55,6 +58,15 @@ export class UsuariosComponent implements OnInit {
     )
   }
 
+  GetSedesXEmpresa() {
+    const empresa = this.usuariosFrom.get('IdEmpresa').value;
+    this.SedesService.GetSedeXEmpresa(empresa).subscribe(
+      resutl => {
+        this.DataSedes = resutl;
+      }
+    )
+  }
+
   GetAllProfileS() {
     this.PerfilesService.GetAllProfiles().subscribe(
       resutl => {
@@ -76,6 +88,7 @@ export class UsuariosComponent implements OnInit {
     const Passwords = new FormControl('', [Validators.required]);
     const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);
     const IdEmpresa = new FormControl('', [Validators.required]);
+    const IdSede = new FormControl('', [Validators.required]);
     const IdPerfil = new FormControl('', [Validators.required]);
     const Email = new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
 
@@ -85,6 +98,7 @@ export class UsuariosComponent implements OnInit {
       Passwords: Passwords,
       Telefono: Telefono,
       IdEmpresa: IdEmpresa,
+      IdSede: IdSede,
       IdPerfil: IdPerfil,
       Email: Email
     });

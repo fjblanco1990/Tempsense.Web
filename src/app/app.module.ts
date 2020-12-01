@@ -29,6 +29,7 @@ import { EmpresasConfigComponent } from './Components/configuracion/empresas-con
 import { UmbralConfigComponent } from './Components/configuracion/umbral-config/umbral-config.component';
 import { BitacorasConfigComponent } from './Components/configuracion/bitacoras-config/bitacoras-config.component';
 import { DispositvosConfigComponent } from './Components/configuracion/dispositvos-config/dispositvos-config.component';
+import { SedesConfigComponent } from './Components/configuracion/sedes-config/sedes-config.component';
 // import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
 
 @NgModule({
@@ -53,7 +54,8 @@ import { DispositvosConfigComponent } from './Components/configuracion/dispositv
     EmpresasConfigComponent,
     UmbralConfigComponent,
     BitacorasConfigComponent,
-    DispositvosConfigComponent
+    DispositvosConfigComponent,
+    SedesConfigComponent
   ],
   imports: [
     routing,

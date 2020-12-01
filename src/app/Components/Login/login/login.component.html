@@ -28,6 +28,7 @@
                    
                     <input type="password" placeholder="Contraseña" class="input-login" id="password" formControlName="password">
                     <input type="submit" class="btn-login" value="Iniciar sesion" (click)="IniciarSesion()">
+                    <input type="submit" class="btn-Recup" value="Recuperar Contraseña" data-toggle="modal" data-target="#ModalPasswordRecupe">
                     <!-- <input type="submit" class="btn-login" value="Registrar usuarios" (click)="RegistrarUsuarios()"> -->
                     <div class="col-xs-12 col-md-3 col-lg-2 btnInicio">
                         <div class="btn-group">
@@ -43,8 +44,39 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ModalPasswordRecupe" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background: rgba(150, 16, 30, 1); color: white;">
+            <h5 class="modal-title" id="exampleModalLongTitle">Recuperación de contraseña</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Ingrese correo:</label>
+                <input type="text" class="form-control" id="recipient-name"  formControlName="recuperacion">
+              </div>
+          
+          </div>
+          <div class="modal-footer">
+            <div class="form-group col-xs-6 col-md-12 col-lg-2">
+              <button type="submit" class="btn btn-danger backNaranja" id="cerrarModal" #cerrarModal data-dismiss="modal" >Cerrar</button>
+            </div>
+            <div class="form-group col-xs-6 col-md-12 col-lg-3">
+                <button type="submit"  class="btn btn-danger backOscuro" (click)="RecuperarContrasena()">Recuperar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </form>
+
 
 <app-usuarios *ngIf="MostrarRegistro" (emitEventClose)="recibirFormUsuario($event)"></app-usuarios>
     
 
+ 

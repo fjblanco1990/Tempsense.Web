@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service';
@@ -12,6 +12,7 @@ import { LoginService } from 'src/app/Services/Login/Login.service';
   providers: [LoginService, NotificacionesService]
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('cerrarModal', { static: false }) cerrarModal: ElementRef;
   public url ='http://localhost:4200';
   public MostrarRegistro = false;
   public loginFrom: any;
@@ -48,7 +49,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   recibirFormUsuario(event) {
     if(event) {
       this.MostrarRegistro = false;
@@ -57,6 +57,19 @@ export class LoginComponent implements OnInit {
 
   RegistrarUsuarios () {
     this.MostrarRegistro = true;
+  }
+
+  RecuperarContrasena() {
+    this.LoginService.RecuperarContrasena(this.loginFrom.value.recuperacion).subscribe(
+        resutl => {
+            this.notificacionesService.ExitosoGeneral('La contraseña se envio a su correo.');
+            this.loginFrom.reset();
+            this.cerrarModal.nativeElement.click();
+        },
+        error => {
+          this.notificacionesService.Error('El correo ingresado no existe en la aplicación.');
+        });
+ 
   }
 
   ValidarErrorForm(formulario: any) {
@@ -69,10 +82,12 @@ export class LoginComponent implements OnInit {
   validarLogin() {
     const Email = new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
     const password = new FormControl('', [Validators.required]);
+    const recuperacion = new FormControl('', []);
 
     this.loginFrom = new FormGroup({
       Email: Email,
-      password: password
+      password: password,
+      recuperacion: recuperacion
     });
   }
 }

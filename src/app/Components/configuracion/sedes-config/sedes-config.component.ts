@@ -6,23 +6,26 @@ import { LoginService } from 'src/app/Services/Login/Login.service';
 import { SedesService } from 'src/app/Services/Sedes/Sedes.service';
 
 @Component({
-  selector: 'app-bitacoras-config',
-  templateUrl: './bitacoras-config.component.html',
-  styleUrls: ['./bitacoras-config.component.css'],
-  providers: [EmpresasService, LoginService]
+  selector: 'app-sedes-config',
+  templateUrl: './sedes-config.component.html',
+  styleUrls: ['./sedes-config.component.css'],
+  providers: [SedesService, EmpresasService, LoginService]
 })
-export class BitacorasConfigComponent implements OnInit {
+export class SedesConfigComponent implements OnInit {
 
 
   public DataEmpresa: any;
   public DataSedes: any;
-  public bitacoraFrom: any;
+  public sedesFrom: any;
   public activarActualizar: boolean;
   public ValidarSesionModel = new ValidarSesionModel();
-  constructor(public empresasService: EmpresasService, public sedesService: SedesService, private LoginService: LoginService) { }
+  constructor(public sedesService: SedesService, public EmpresasService: EmpresasService, private LoginService: LoginService) { }
 
   ngOnInit(): void {
-    this.validarEmpresas();
+    this.activarActualizar = null;
+    this.ValidarSesion();
+    this.validarSedes();
+    this.GetAllSedes();
     this.GetAllEmpresas();
   }
 
@@ -36,7 +39,7 @@ export class BitacorasConfigComponent implements OnInit {
   }
 
   GetAllEmpresas() {
-    this.empresasService.GetAllEmpresas().subscribe(
+    this.EmpresasService.GetAllEmpresas().subscribe(
       resutl => {
         this.DataEmpresa = resutl;
       }
@@ -44,15 +47,15 @@ export class BitacorasConfigComponent implements OnInit {
   }
 
   GuardarSede() {
-    if (this.bitacoraFrom.valid) {
-      this.sedesService.SaveSede(JSON.stringify(this.bitacoraFrom.value)).subscribe(
+    if (this.sedesFrom.valid) {
+      this.sedesService.SaveSede(JSON.stringify(this.sedesFrom.value)).subscribe(
         resutl => {
-          this.bitacoraFrom.reset();
+          this.sedesFrom.reset();
           this.GetAllSedes();
         }
       )
     } else {
-      this.ValidarErrorForm(this.bitacoraFrom);
+      this.ValidarErrorForm(this.sedesFrom);
     }
   }
 
@@ -60,30 +63,36 @@ export class BitacorasConfigComponent implements OnInit {
 
   }
 
-  ActualizarUmbral() {
-    if (this.bitacoraFrom.valid) {
-      this.sedesService.UpdateSede(JSON.stringify(this.bitacoraFrom.value)).subscribe(
+  ActualizarSede() {
+    if (this.sedesFrom.valid) {
+      this.sedesService.UpdateSede(JSON.stringify(this.sedesFrom.value)).subscribe(
         resutl => {
-          this.bitacoraFrom.reset();
+          this.sedesFrom.reset();
           this.GetAllSedes();
         }
       )
     } else {
-      this.ValidarErrorForm(this.bitacoraFrom);
+      this.ValidarErrorForm(this.sedesFrom);
     }
   }
-
+  
   EliminarSede(id) {
-    if (this.bitacoraFrom.valid) {
+    if (this.sedesFrom.valid) {
       this.sedesService.DeleteSede(JSON.stringify(id)).subscribe(
         resutl => {
-          this.bitacoraFrom.reset();
+          this.sedesFrom.reset();
           this.GetAllSedes();
         }
       )
     } else {
-      this.ValidarErrorForm(this.bitacoraFrom);
+      this.ValidarErrorForm(this.sedesFrom);
     }
+  }
+ 
+
+  LimpiarFormulario() {
+    this.activarActualizar = null;
+    this.sedesFrom.reset();
   }
 
   ValidarErrorForm(formulario: any) {
@@ -114,14 +123,14 @@ export class BitacorasConfigComponent implements OnInit {
     }
   }
 
-  validarEmpresas() {
+  validarSedes() {
 
-    const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);
-    const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);
-    const Email = new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
+    const Nombre = new FormControl('', [Validators.required]);
+    const IdEmpresa = new FormControl('', [Validators.required]);
 
-    this.bitacoraFrom = new FormGroup({
-
+    this.sedesFrom = new FormGroup({
+      Nombre: Nombre,
+      IdEmpresa: IdEmpresa
     });
   }
 

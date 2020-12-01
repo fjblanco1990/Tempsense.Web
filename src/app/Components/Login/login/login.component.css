@@ -143,11 +143,11 @@ label {
 
 
 .btn-login {
-  font-family: 'Gayathri', sans-serif;
+    font-family: 'Gayathri', sans-serif;
     background: transparent;
     border: 0;
     color: wheat;
-    margin: 35px 58px;
+    margin: 20px 44px;
     height: 40px;
     border: 0;
     border-radius: 0.1em;
@@ -159,6 +159,26 @@ label {
 .btn-login:hover{
  cursor: pointer;
  color: white;
+}
+
+.btn-Recup {
+  font-family: 'Gayathri',
+  sans-serif;
+  background: transparent;
+  border: 0;
+  color: wheat;
+  margin: 0px 28px;
+  height: 40px;
+  border: 0;
+  border-radius: 0.1em;
+  /* width: 100%; */
+  outline: none !important;
+  /* font-size: 18px; */
+}
+
+.btn-Recup:hover {
+  cursor: pointer;
+  color: white;
 }
 
 .btn-gruop {
@@ -174,7 +194,7 @@ label {
 
 .IconUser{
     width: 100%;
-    margin-top: -17px;
+    margin-top: -24px;
 }
 
 .dropdown {
@@ -268,4 +288,15 @@ label {
     top: 100%;
     left: 50%;
     border-color: #2E2E2E transparent transparent transparent;
+}
+
+.backOscuro {
+  background: rgba(150, 16, 30, 1);
+  border-color: rgba(150, 16, 30, 1);
+}
+
+.backNaranja {
+
+  background: rgb(234 151 0);
+  border-color: rgb(234 151 0);
 }

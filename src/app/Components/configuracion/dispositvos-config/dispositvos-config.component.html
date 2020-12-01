@@ -1,50 +1,91 @@
 <div class="contenedor-form">
     <h1 class="titleForm">Dispositivos</h1>
-    <form method="get" [formGroup]="empresaFrom">
+    <form method="get" [formGroup]="dispositivoFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nombre </label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre dispositivo">
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre dispositivo" formControlName="Nombre">
+                <span class="help-block validationSpan"
+                    *ngIf="dispositivoFrom.controls['Nombre'].errors?.required && 
+                            (dispositivoFrom.controls['Nombre'].dirty || dispositivoFrom.controls['Nombre'].touched)">
+                    El nombre es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Medida</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="medida">
+                <select class="form-control" formControlName="IdTipoMedida">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataMedidas of DataMedidas" [value]="dataMedidas.IdTipoMedida">
+                        {{dataMedidas.Nombre}}
+                    </option>
+                </select>
+                <span class="help-block validationSpan"
+                    *ngIf="dispositivoFrom.controls['IdTipoMedida'].errors?.required && 
+                            (dispositivoFrom.controls['IdTipoMedida'].dirty || dispositivoFrom.controls['IdTipoMedida'].touched)">
+                    La medida es obligatoria.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Empresa</label>
-                <select class="form-control">
-                    <option>-- Seleccione --</option>
+                <select class="form-control" formControlName="Empresa" (change)="GetAllSedes()">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataEmpresa of DataEmpresa" [value]="dataEmpresa.IdEmpresa">
+                        {{dataEmpresa.Nombre}}
+                    </option>
                 </select>
+                <span class="help-block validationSpan"
+                    *ngIf="dispositivoFrom.controls['Empresa'].errors?.required && 
+                            (dispositivoFrom.controls['Empresa'].dirty || dispositivoFrom.controls['Empresa'].touched)">
+                    La empresa es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Sede</label>
-                <select class="form-control">
-                    <option>-- Seleccione --</option>
+                <select class="form-control" formControlName="IdSede" >
+                      <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataSede of DataSedes" [value]="dataSede.IdSede">
+                        {{dataSede.Nombre}}
+                    </option>
                 </select>
+                <span class="help-block validationSpan"
+                    *ngIf="dispositivoFrom.controls['IdSede'].errors?.required && 
+                            (dispositivoFrom.controls['IdSede'].dirty || dispositivoFrom.controls['IdSede'].touched)">
+                    La sede es obligatoria.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Tiempo notificación</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="empresa">
+                <input type="number" class="form-control" id="inputPassword4" placeholder="tiempo notificacion" formControlName="TiempoNotificacion">
+                <span class="help-block validationSpan"
+                    *ngIf="dispositivoFrom.controls['TiempoNotificacion'].errors?.required && 
+                            (dispositivoFrom.controls['TiempoNotificacion'].dirty || dispositivoFrom.controls['TiempoNotificacion'].touched)">
+                    El tiempo notificación es obligatorio.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <div class="form-check" style="margin-top: 50px; margin-left: 5px;">
-                    <input class="form-check-input" type="checkbox" id="activoCheck">
+                    <input class="form-check-input" type="checkbox" id="activoCheck" formControlName="Activo">
                     <label class="form-check-label" for="activoCheck">
                         Actvio
                     </label>
+                    <span class="help-block validationSpan"
+                    *ngIf="dispositivoFrom.controls['Activo'].errors?.required && 
+                            (dispositivoFrom.controls['Activo'].dirty || dispositivoFrom.controls['Activo'].touched)">
+                    La activo es obligatorio.
+                </span>
                 </div>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-danger backOscuro">Guardar</button>
+                <button type="submit" class="btn btn-danger backOscuro" (click)="GuardarDispositivo()">Guardar</button>
             </div>
         </div>
     </form>

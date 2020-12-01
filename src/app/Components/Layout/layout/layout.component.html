@@ -3,7 +3,7 @@
     <div class="contenedorPpal">
         <div class="col-xs-12 col-md-12 col-lg-12">
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAUsuarios == true || mostrarAAdmin == true"> 
                     <div id="imgen" [routerLink]="['/Tablero']" >
                         <a class="btn1"><img class="bussines-img-all bussines-img1"
                                 src="../../../../assets/images/Tablero.svg" alt="bussines"></a>
@@ -15,43 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-6 col-lg-3">
-                    <div id="imgen" [routerLink]="['/Empresa']">
-                        <a class="btn2"><img class="bussines-img-all bussines-img2 "
-                                src="../../../../assets/images/Empresa.svg" alt="bussines"></a>
-                        <div id="info">
-                            <p id="headline">Empresa</p>
-                            <p id="infoInt">Registra tu empresa con nit y activa notificaciones por correo y por sms.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6 col-lg-3" >
-                    <div id="imgen" [routerLink]="['/Dispositivo']">
-                        <a href="" class="btn3"><img class="bussines-img-all bussines-img3 "
-                                src="../../../../assets/images/Dispositivo.svg" alt="bussines"></a>
-                        <div id="info">
-                            <p id="headline">Dispositivo</p>
-                            <p id="infoInt">Al crear un dispositivo se genera un identificador para el envio de mensajes.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-md-12 col-lg-12">
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-3" >
-                    <div id="imgen" [routerLink]="['/Empresa']">
-                        <a href="" class="btn5"><img class="bussines-img-all bussines-img4 "
-                                src="../../../../assets/images/usuario.svg" alt="bussines"></a>
-                        <div id="info">
-                            <p id="headline">Usuarios</p>
-                            <p id="infoInt">Registra tus datos personales.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6 col-lg-3" >
+                 <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAUsuarios == true || mostrarAAdmin == true" >
                     <div id="imgen" [routerLink]="['/Reportes']">
                         <a href="" class="btn6"><img class="bussines-img-all bussines-img5 "
                                 src="../../../../assets/images/Reporte.svg" alt="bussines"></a>
@@ -64,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-6 col-lg-3" >
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAUsuarios == true || mostrarAAdmin == true" >
                     <div id="imgen" [routerLink]="['/Umbral']">
                         <a href="" class="btn7"><img class="bussines-img-all bussines-img6 "
                                 src="../../../../assets/images/Umbral.svg" alt="bussines"></a>
@@ -75,14 +39,15 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
 
-        <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-md-12 col-lg-12" >
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-3">
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAUsuarios == true || mostrarAAdmin == true">
                     <div id="imgen" [routerLink]="['/Bitacora']">
-                        <a href="" class="btn5"><img class="bussines-img-all bussines-img4 " src="../../../../assets/images/usuario.svg"
+                        <a href="" class="btn5"><img class="bussines-img-all bussines-img4 " src="../../../../assets/images/Bitacora.svg"
                                 alt="bussines"></a>
                         <div id="info">
                             <p id="headline">Bitacora</p>
@@ -91,10 +56,47 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-6 col-lg-3" >
-                    <div id="imgen" [routerLink]="['/Config']">
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAAdmin == true" >
+                    <div id="imgen" [routerLink]="['/Empresa']">
                         <a href="" class="btn5"><img class="bussines-img-all bussines-img4 "
                                 src="../../../../assets/images/usuario.svg" alt="bussines"></a>
+                        <div id="info">
+                            <p id="headline">Usuarios</p>
+                            <p id="infoInt">Registra tus datos personales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAAdmin == true"> 
+                    <div id="imgen" [routerLink]="['/Empresa']">
+                        <a class="btn2"><img class="bussines-img-all bussines-img2 "
+                                src="../../../../assets/images/Empresa.svg" alt="bussines"></a>
+                        <div id="info">
+                            <p id="headline">Empresa</p>
+                            <p id="infoInt">Registra tu empresa con nit y activa notificaciones por correo y por sms.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-12 col-lg-12" >
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAAdmin == true">
+                    <div id="imgen" [routerLink]="['/Dispositivo']">
+                        <a href="" class="btn3"><img class="bussines-img-all bussines-img3 "
+                                src="../../../../assets/images/Dispositivo.svg" alt="bussines"></a>
+                        <div id="info">
+                            <p id="headline">Dispositivo</p>
+                            <p id="infoInt">Al crear un dispositivo se genera un identificador para el envio de mensajes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3" *ngIf="mostrarAAdmin == true">
+                    <div id="imgen" [routerLink]="['/Config']">
+                        <a href="" class="btn5"><img class="bussines-img-all bussines-img4 "
+                                src="../../../../assets/images/Configuración.svg" alt="bussines"></a>
                         <div id="info">
                             <p id="headline">Configuración</p>
                             <p id="infoInt">En este espacio podras realizar las configuracion y asiganaciones

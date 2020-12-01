@@ -20,6 +20,9 @@ export class LayoutComponent implements OnInit {
   public mostrarUsuario = true;
   public mostrarReporte = true;
   public mostrarUmbral = true;
+  public mostrarAUsuarios = false;
+  public mostrarAAdmin = false;
+  private perfilUser: any;
   //#endregion
   //#region variables componentes 
   //#endregion
@@ -96,6 +99,13 @@ export class LayoutComponent implements OnInit {
   ValidarSesion() {
     if (localStorage.getItem('InfoLogin') !== null) {
       const infoLogin = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
+      if (infoLogin.IdPerfil === 1) {
+        this.mostrarAUsuarios = true
+        this.mostrarAAdmin = true;
+      } else {
+        this.mostrarAUsuarios = true
+        this.mostrarAAdmin = false;
+      }
       this.ValidarSesionModel.IdUsuario = infoLogin.IdUsuario;
       this.ValidarSesionModel.IdSesionUsuario = infoLogin.IdSesionUsuario;
       this.LoginService.ValidarSesionActiva(JSON.stringify(this.ValidarSesionModel)).subscribe(

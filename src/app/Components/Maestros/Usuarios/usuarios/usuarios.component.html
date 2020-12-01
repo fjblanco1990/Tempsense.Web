@@ -108,7 +108,7 @@
 
                         <div class="col-xs-12 col-md-6 col-lg-12" id="ta">
                         <div class="from-input">
-                            <select class="input-from" name="" id="" formControlName="IdEmpresa">
+                            <select class="input-from" name="" id="" formControlName="IdEmpresa" (change)="GetSedesXEmpresa()">
                                 <option value="0" disabled selected>Seleccióne Empresa...</option>
                                 <option *ngFor="let dataEmpresa of DataEmpresa" [value]="dataEmpresa.IdEmpresa">
                                     {{dataEmpresa.Nombre}}
@@ -119,6 +119,23 @@
                                 *ngIf="usuariosFrom.controls['IdEmpresa'].errors?.required && 
                                        (usuariosFrom.controls['IdEmpresa'].dirty || usuariosFrom.controls['IdEmpresa'].touched)">
                                 La Empresa es obligatoria.
+                            </span>
+                        </div>
+                        </div>
+
+                         <div class="col-xs-12 col-md-6 col-lg-12" id="ta">
+                        <div class="from-input">
+                            <select class="input-from" name="" id="" formControlName="IdSede"> 
+                                <option value="0" disabled selected>Seleccióne Sede...</option>
+                                <option *ngFor="let dataSedes of DataSedes" [value]="dataSedes.IdSede">
+                                    {{dataSedes.Nombre}}
+                                </option>
+                            </select>
+                            <span class="focus-input-from "></span>
+                            <span class="help-block validationSpan"
+                                *ngIf="usuariosFrom.controls['IdSede'].errors?.required && 
+                                       (usuariosFrom.controls['IdSede'].dirty || usuariosFrom.controls['IdSede'].touched)">
+                                La sede es obligatoria.
                             </span>
                         </div>
                         </div>

@@ -2,29 +2,41 @@
 
 <div class="contenedor-form">
     <h1 class="titleForm">Dispositivos</h1>
-    <form method="get" [formGroup]="empresaFrom">
+    <form method="get" [formGroup]="dispositivoFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nombre </label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre dispositivo">
+                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre dispositivo" formControlName="Nombre">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Medida</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="medida">
+                <select class="form-control" formControlName="IdTipoMedida" (change)="GetAllSedes()">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataMedidas of DataMedidas" [value]="dataMedidas.IdTipoMedida">
+                        {{dataMedidas.Nombre}}
+                    </option>
+                </select>
+             
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Empresa</label>
-                <select class="form-control">
-                    <option>-- Seleccione --</option>
+                <select class="form-control" formControlName="Empresa" (change)="GetAllSedes()">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataEmpresa of DataEmpresa" [value]="dataEmpresa.IdEmpresa">
+                        {{dataEmpresa.Nombre}}
+                    </option>
                 </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Sede</label>
-                <select class="form-control">
-                    <option>-- Seleccione --</option>
+                <select class="form-control" formControlName="IdSede" >
+                      <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataSede of DataSedes" [value]="dataSede.IdSede">
+                        {{dataSede.Nombre}}
+                    </option>
                 </select>
             </div>
 
@@ -32,11 +44,11 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Tiempo notificación</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="empresa">
+                <input type="password" class="form-control" id="inputPassword4" placeholder="tiempo notificacion" formControlName="TiempoNotificacion">
             </div>
             <div class="form-group col-md-6">
                 <div class="form-check" style="margin-top: 50px; margin-left: 5px;">
-                    <input class="form-check-input" type="checkbox" id="activoCheck">
+                    <input class="form-check-input" type="checkbox" id="activoCheck" formControlName="Estado">
                     <label class="form-check-label" for="activoCheck">
                         Actvio
                     </label>

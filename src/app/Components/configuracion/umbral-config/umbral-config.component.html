@@ -1,32 +1,62 @@
 <div class="contenedor-form">
     <h1 class="titleForm">Umbrales</h1>
-    <form method="get" [formGroup]="empresaFrom">
+    <form method="get" [formGroup]="umbralFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Valor minimo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre empresa">
+                <input type="number" class="form-control" id="inputEmail4" placeholder="nombre empresa" formControlName="Temperatura_min">
+                 <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['Temperatura_min'].errors?.required && 
+                            (umbralFrom.controls['Temperatura_min'].dirty || umbralFrom.controls['Temperatura_min'].touched)">
+                    El nombre es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Valor maximo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="correo">
+                <input type="number" class="form-control" id="inputEmail4" placeholder="correo" formControlName="Temperatura_max">
+                 <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['Temperatura_max'].errors?.required && 
+                            (umbralFrom.controls['Temperatura_max'].dirty || umbralFrom.controls['Temperatura_max'].touched)">
+                    El nombre es obligatoria.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Tolerancia minima</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="abrebiatura">
+                <input type="number" class="form-control" id="inputPassword4" placeholder="abrebiatura" formControlName="Tolerancia_min">
+                 <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['Tolerancia_min'].errors?.required && 
+                            (umbralFrom.controls['Tolerancia_min'].dirty || umbralFrom.controls['Tolerancia_min'].touched)">
+                    El nombre es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">tolerancia maxima</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+                <input type="number" class="form-control" id="inputEmail4" placeholder="nit" formControlName="Tolerancia_max">
+                 <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['Tolerancia_max'].errors?.required && 
+                            (umbralFrom.controls['Tolerancia_max'].dirty || umbralFrom.controls['Tolerancia_max'].touched)">
+                    El nombre es obligatoria.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Dispositivo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+                  <select class="form-control" formControlName="IdDispositivo">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataDispositivo of DataDispositivo" [value]="dataDispositivo.IdDispositivo">
+                        {{dataDispositivo.Nombre}}
+                    </option>
+                </select>
+                 <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['IdDispositivo'].errors?.required && 
+                            (umbralFrom.controls['IdDispositivo'].dirty || umbralFrom.controls['IdDispositivo'].touched)">
+                    El nombre es obligatoria.
+                </span>
             </div>
         </div>
         <div class="form-row">
