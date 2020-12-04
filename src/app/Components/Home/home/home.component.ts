@@ -96,8 +96,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  
-
   ValidarSesion() {
     if (localStorage.getItem('InfoLogin') !== null) {
       const infoLogin = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));

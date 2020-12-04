@@ -5,12 +5,14 @@ import { DispositivosService } from 'src/app/Services/Dispositivos/Dispositivos.
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
 import { LoginService } from 'src/app/Services/Login/Login.service';
 import { SedesService } from 'src/app/Services/Sedes/Sedes.service';
+import { UmbralesService } from 'src/app/Services/Umbrales/Umbral.services';
 
 @Component({
   selector: 'app-umbral-config',
   templateUrl: './umbral-config.component.html',
   styleUrls: ['./umbral-config.component.css'],
-  providers: [EmpresasService, LoginService, SedesService, DispositivosService]
+  providers: [EmpresasService, LoginService, SedesService, DispositivosService,
+    UmbralesService]
 })
 export class UmbralConfigComponent implements OnInit {
 
@@ -18,21 +20,23 @@ export class UmbralConfigComponent implements OnInit {
   public DataEmpresa: any;
   public DataSedes: any;
   public umbralFrom: any;
+  public DataUmbral: any;
   public activarActualizar: boolean;
   public ValidarSesionModel = new ValidarSesionModel();
   constructor(public empresasService: EmpresasService, public sedesService: SedesService, private LoginService: LoginService,
-    private dispositivosService: DispositivosService) { }
+    private dispositivosService: DispositivosService, private umbralesService: UmbralesService) { }
 
   ngOnInit(): void {
     this.validarUmbral();
     this.GetAllDispositivos();
+    this.GetAllUmbrales();
   }
 
 
   GetAllUmbrales() {
-    this.sedesService.GetAllSedes().subscribe(
+    this.umbralesService.GetAllUmbrales().subscribe(
       resutl => {
-        this.DataSedes = resutl;
+        this.DataUmbral = resutl;
       }
     )
   }
@@ -50,9 +54,22 @@ export class UmbralConfigComponent implements OnInit {
 
   }
 
+  CrearUmbral() {
+    if (this.umbralFrom.valid) {
+      this.umbralesService.SaveUmbral(JSON.stringify(this.umbralFrom.value)).subscribe(
+        resutl => {
+          this.umbralFrom.reset();
+          this.GetAllUmbrales();
+        }
+      )
+    } else {
+      this.ValidarErrorForm(this.umbralFrom);
+    }
+  }
+
   ActualizarUmbral() {
     if (this.umbralFrom.valid) {
-      this.sedesService.UpdateSede(JSON.stringify(this.umbralFrom.value)).subscribe(
+      this.umbralesService.UpdateUmbral(JSON.stringify(this.umbralFrom.value)).subscribe(
         resutl => {
           this.umbralFrom.reset();
           this.GetAllUmbrales();
@@ -64,16 +81,17 @@ export class UmbralConfigComponent implements OnInit {
   }
 
   EliminarUmbral(id) {
-    if (this.umbralFrom.valid) {
-      this.sedesService.DeleteSede(JSON.stringify(id)).subscribe(
+      this.umbralesService.DeleteUmbral(JSON.stringify(id)).subscribe(
         resutl => {
           this.umbralFrom.reset();
           this.GetAllUmbrales();
         }
       )
-    } else {
-      this.ValidarErrorForm(this.umbralFrom);
-    }
+  }
+
+  LimpiarFormulario() {
+    this.activarActualizar = null;
+    this.umbralFrom.reset();
   }
 
   ValidarErrorForm(formulario: any) {
@@ -105,11 +123,11 @@ export class UmbralConfigComponent implements OnInit {
   }
 
   validarUmbral() {
-    const IdUmbral = new FormControl('', [Validators.required]);
+    const IdUmbral = new FormControl('', []);
     const Temperatura_min = new FormControl('', [Validators.required]);
     const Temperatura_max = new FormControl('', [Validators.required]);
-    const Activo = new FormControl('', [Validators.required]);
-    const Fecha_inicio = new FormControl('', [Validators.required]);
+    const Activo = new FormControl('', []);
+    const Fecha_inicio = new FormControl('', []);
     const IdDispositivo = new FormControl('', [Validators.required]);
     const Tolerancia_min = new FormControl('', [Validators.required]);
     const Tolerancia_max = new FormControl('', [Validators.required]);

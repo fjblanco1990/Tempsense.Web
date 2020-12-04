@@ -77,16 +77,12 @@ export class SedesConfigComponent implements OnInit {
   }
   
   EliminarSede(id) {
-    if (this.sedesFrom.valid) {
       this.sedesService.DeleteSede(JSON.stringify(id)).subscribe(
         resutl => {
           this.sedesFrom.reset();
           this.GetAllSedes();
         }
       )
-    } else {
-      this.ValidarErrorForm(this.sedesFrom);
-    }
   }
  
 

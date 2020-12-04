@@ -60,15 +60,23 @@ export class LoginComponent implements OnInit {
   }
 
   RecuperarContrasena() {
-    this.LoginService.RecuperarContrasena(this.loginFrom.value.recuperacion).subscribe(
+    
+    if (this.loginFrom.value.recuperacion !== '' && this.loginFrom.value.recuperacion !== null && this.loginFrom.value.recuperacion !== undefined) {
+      const emialIngresado = this.loginFrom.value.recuperacion;
+      this.LoginService.RecuperarContrasena(this.loginFrom.value.recuperacion).subscribe(
         resutl => {
             this.notificacionesService.ExitosoGeneral('La contraseña se envio a su correo.');
             this.loginFrom.reset();
+            this.loginFrom.get('Email').setValue(emialIngresado);
             this.cerrarModal.nativeElement.click();
         },
         error => {
           this.notificacionesService.Error('El correo ingresado no existe en la aplicación.');
         });
+    } else {
+      this.notificacionesService.Error('El correo es obligatorio.');
+    }
+    
  
   }
 
