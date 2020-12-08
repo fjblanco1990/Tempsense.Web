@@ -20,7 +20,7 @@ export class UmbralComponent implements OnInit {
   }
 
 
-  GetAllEmpresas() {
+  GetAllEmpresas(): void {
     this.empresasService.GetAllEmpresas().subscribe(
       resutl => {
         this.DataEmpresa = resutl;
@@ -28,7 +28,7 @@ export class UmbralComponent implements OnInit {
     )
   }
 
-  validarEmpresas() {
+  validarEmpresas(): void {
 
     const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);
     const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);
