@@ -1,18 +1,16 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
-import { EnvironmentService } from '../Enviroment/enviroment.service';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class NotificacionesService {
-    
+
     constructor() {
-        
+
     }
 
-    Exitoso(mensaje) {
+    Exitoso(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -20,18 +18,18 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'success',
-            title: 'El ' + mensaje +' se guardo con exito'
-        })
+            title: 'El ' + mensaje + ' se guardo con exito'
+        });
     }
 
-    ExitosoGeneral(mensaje) {
+    ExitosoGeneral(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -39,18 +37,18 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'success',
             title:  mensaje
-        })
+        });
     }
 
-    ExitosoActualizar(mensaje) {
+    ExitosoActualizar(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -58,18 +56,18 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'success',
             title: 'El ' + mensaje + ' se actualizo con exito.'
-        })
+        });
     }
 
-    ExitosoEliminar(mensaje) {
+    ExitosoEliminar(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -77,18 +75,18 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'success',
             title: 'El ' + mensaje + ' se elimino con exito.'
-        })
+        });
     }
 
-    Error(mensaje) {
+    Error(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -96,18 +94,18 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'error',
             title: mensaje
-        })
+        });
     }
 
-    Advertencia(mensaje) {
+    Advertencia(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -115,18 +113,18 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'warning',
             title: mensaje
-        })
+        });
     }
 
-    Informativo(mensaje) {
+    Informativo(mensaje): any {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -134,16 +132,14 @@ export class NotificacionesService {
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
-        })
+        });
 
         Toast.fire({
             icon: 'info',
             title: mensaje
-        })
+        });
     }
-
-
 }

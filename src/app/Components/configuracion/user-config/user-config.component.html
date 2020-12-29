@@ -1,1 +1,181 @@
-<p>user-config works!</p>
+
+<app-header></app-header>
+<div class="contenedor-form">
+    <h1 class="titleForm">Usuarios</h1>
+    <form method="get" [formGroup]="usuariosFrom">
+        <div class="form-row">
+          
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Nombre:</label>
+                <input class="form-control" type="text" name="name" placeholder="Nombre..." formControlName="Nombre">
+                <span class="focus-input-from"></span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Nombre'].errors?.required && 
+                                                                    (usuariosFrom.controls['Nombre'].dirty || usuariosFrom.controls['Nombre'].touched)">
+                    El Nombre es obligatorio.
+                </span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Nombre'].errors?.pattern && 
+                                                                    (usuariosFrom.controls['Nombre'].dirty || usuariosFrom.controls['Nombre'].touched)">
+                    El Nombre solo acepta letras.
+                </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Contraseña:</label>
+                <input class="form-control" type="password" name="password" placeholder="Contraseña..." formControlName="Passwords">
+                <span class="focus-input-from"></span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Passwords'].errors?.required && 
+                                                           (usuariosFrom.controls['Passwords'].dirty || usuariosFrom.controls['Passwords'].touched)">
+                    La contraseña es obligatoria.
+                </span>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Telefono o Celular:</label>
+                <input class="form-control" type="text" placeholder="Telfono o Celular..." formControlName="Telefono">
+                <span class="focus-input-from"></span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Telefono'].errors?.required && 
+                                                                                   (usuariosFrom.controls['Telefono'].dirty || usuariosFrom.controls['Telefono'].touched)">
+                    El Teléfono o Celular es obligatorio.
+                </span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Telefono'].errors?.pattern && 
+                                                                                 (usuariosFrom.controls['Telefono'].dirty || usuariosFrom.controls['Telefono'].touched)">
+                    El Teléfono o Celular solo acepta numeros.
+                </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Email:</label>
+                <input class="form-control" type="text" name="email" placeholder="Email..." formControlName="Email">
+                <span class="focus-input-from"></span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Email'].errors?.required && 
+                                                           (usuariosFrom.controls['Email'].dirty || usuariosFrom.controls['Email'].touched)">
+                    El Email es obligatorio.
+                </span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['Email'].errors?.pattern && 
+                                                         (usuariosFrom.controls['Email'].dirty || usuariosFrom.controls['Email'].touched)">
+                    El Email ingresado no tiene el formato correcto.
+                </span>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Perfil:</label>
+                <select class="form-control" name="" id="" formControlName="IdPerfil">
+                    <option value="0" disabled selected>Seleccióne Perfil...</option>
+                    <option *ngFor="let dataPerfiles of DataPerfiles" [value]="dataPerfiles.IdPerfil">
+                        {{dataPerfiles.Nombre}}
+                    </option>
+                </select>
+                <span class="focus-input-from"></span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['IdPerfil'].errors?.required && 
+                                                            (usuariosFrom.controls['IdPerfil'].dirty || usuariosFrom.controls['IdPerfil'].touched)">
+                    El Perfil es obligatorio.
+                </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Empresa:</label>
+                <select class="form-control" name="" id="" formControlName="IdEmpresa" (change)="GetSedesXEmpresa()">
+                    <option value="0" disabled selected>Seleccióne Empresa...</option>
+                    <option *ngFor="let dataEmpresa of DataEmpresa" [value]="dataEmpresa.IdEmpresa">
+                        {{dataEmpresa.Nombre}}
+                    </option>
+                </select>
+                <span class="focus-input-from "></span>
+                <span class="help-block validationSpan"
+                    *ngIf="usuariosFrom.controls['IdEmpresa'].errors?.required && 
+                                                       (usuariosFrom.controls['IdEmpresa'].dirty || usuariosFrom.controls['IdEmpresa'].touched)">
+                    La Empresa es obligatoria.
+                </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Sede:</label>
+                    <select class="form-control" name="" id="" formControlName="IdSede">
+                        <option value="0" disabled selected>Seleccióne Sede...</option>
+                        <option *ngFor="let dataSedes of DataSedes" [value]="dataSedes.IdSede">
+                            {{dataSedes.Nombre}}
+                        </option>
+                    </select>
+                    <span class="focus-input-from "></span>
+                    <span class="help-block validationSpan"
+                        *ngIf="usuariosFrom.controls['IdSede'].errors?.required && 
+                                                           (usuariosFrom.controls['IdSede'].dirty || usuariosFrom.controls['IdSede'].touched)">
+                        La sede es obligatoria.
+                    </span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="form-group col-xs-6 col-md-12 col-lg-1">
+                   
+                        <!-- <input type="submit" class="btn-register" value="Guardar" (click)="GuardarUsuarios()"> -->
+                <!-- [disabled]="!activarGuardar" -->
+                    <button type="submit" class="btn btn-danger backOscuro" 
+                         (click)="GuardarUsuarios()">Guardar</button>
+                </div>
+
+                <!-- <div class="form-group col-xs-6 col-md-12 col-lg-1" style="margin-right: 12px;">
+                    <button type="submit" class="btn btn-warning backNaranja" [disabled]="!activarActualizar"
+                        (click)="ActualizarEmpresa()">Actualizar</button>
+                </div>-->
+
+                <div class="form-group col-xs-6 col-md-12 col-lg-9">
+                    <button type="submit" class="btn btn-warning backNaranja"
+                        (click)="LimpiarFormulario()">Limpiar</button>
+                </div> 
+            </div>
+        </div>
+    </form>
+    <div class="col-xs-12 col-md-12 col-lg-12" *ngIf="DataEmpresa.length <= 0">
+        <br>
+        <div class="alert alert-secondary" role="alert">
+            No hay registros
+        </div>
+    </div>
+
+    <table class="table" *ngIf="DataUsuarios.length > 0" >
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Perfil</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Sede</th>
+                <th scope="col">Email</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let itemUser of DataUsuarios; let i=index">
+            <tr>
+                <td scope="row">{{itemUser.Nombre}}</td>
+                <td>{{itemUser.Telefono}}</td>
+                <td>{{itemUser.IdPerfil}}</td>
+                <td>{{itemUser.IdEmpresa}}</td>
+                <td>{{itemUser.IdSede}} </td>
+                <td>{{itemUser.Email}}</td>
+                <td>
+                    <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal"
+                        data-target="#ModelDetalleCuenta" (click)="MappearUsuario(itemUser)">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal"
+                        data-target="#ModelDetalleCuenta" (click)="EliminarDispositivo(itemUser.IdUsuario)">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<app-footer></app-footer>

@@ -15,6 +15,7 @@ import { PaginaErrorComponent } from '../Components/pagina-error/pagina-error.co
 import { SedesComponent } from '../Components/sedes/sedes.component';
 import { BitacoraComponent } from '../Components/bitacora/bitacora.component';
 import { ConfiguracionComponent } from '../Components/configuracion/configuracion.component';
+import { UserConfigComponent } from '../Components/configuracion/user-config/user-config.component';
 
 const appRoutes: Routes = [
     { path: 'Login', redirectTo: '/Login'},
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
     // { path: 'Maestros/Empresa', component: EmpresasComponent },
     { path: 'Home', component: HomeComponent },
     { path: 'Crear-Usuarios', component: UsuariosComponent },
+    { path: 'Usuarios', component: UserConfigComponent },
     { path: 'Tablero', component: TablerosComponent },
     { path: 'Empresa', component: EmpresasComponent },
     { path: 'Dispositivo', component: DispositivosComponent },

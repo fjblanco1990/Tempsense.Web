@@ -22,8 +22,8 @@ export class UsuariosComponent implements OnInit {
   //#endregion
   @Output() emitEventClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(public usuariosService: UsuariosService, public PerfilesService: PerfilesService, public empresasService: EmpresasService, 
-    private notificacionesService: NotificacionesService, public SedesService: SedesService) { }
+  constructor(public usuariosService: UsuariosService, public perfilesService: PerfilesService, public empresasService: EmpresasService,
+              private notificacionesService: NotificacionesService, public sedesService: SedesService) { }
 
   ngOnInit(): void {
     this.validarUsuarios();
@@ -31,11 +31,11 @@ export class UsuariosComponent implements OnInit {
     this.GetAllProfileS();
   }
 
-  returnBack() {
+  returnBack(): any {
     this.emitEventClose.emit(true);
   }
 
-  GuardarUsuarios() {
+  GuardarUsuarios(): any {
     if (this.usuariosFrom.valid) {
       this.usuariosFrom.get('IdUsuario').setValue(0);
       this.usuariosService.GuardarUsuarios(JSON.stringify(this.usuariosFrom.value)).subscribe(
@@ -43,47 +43,47 @@ export class UsuariosComponent implements OnInit {
           this.usuariosFrom.reset();
           this.notificacionesService.Exitoso('Usuario');
         }
-      )
+      );
     } else {
       this.ValidarErrorForm(this.usuariosFrom);
     }
-    
+
   }
 
-  GetAllEmpresas() {
+  GetAllEmpresas(): any {
     this.empresasService.GetAllEmpresas().subscribe(
       resutl => {
         this.DataEmpresa = resutl;
       }
-    )
+    );
   }
 
-  GetSedesXEmpresa() {
+  GetSedesXEmpresa(): any {
     const empresa = this.usuariosFrom.get('IdEmpresa').value;
-    this.SedesService.GetSedeXEmpresa(empresa).subscribe(
+    this.sedesService.GetSedeXEmpresa(empresa).subscribe(
       resutl => {
         this.DataSedes = resutl;
       }
-    )
+    );
   }
 
-  GetAllProfileS() {
-    this.PerfilesService.GetAllProfiles().subscribe(
+  GetAllProfileS(): any {
+    this.perfilesService.GetAllProfiles().subscribe(
       resutl => {
         this.DataPerfiles = resutl;
       }
-    )
+    );
   }
 
-  ValidarErrorForm(formulario: any) {
+  ValidarErrorForm(formulario: any): any {
     Object.keys(formulario.controls).forEach(field => { // {1}
       const control = formulario.get(field);            // {2}
       control.markAsTouched({ onlySelf: true });       // {3}
     });
   }
-  
-  validarUsuarios() {
-    const IdUsuario = new FormControl('', [])
+
+  validarUsuarios(): any {
+    const IdUsuario = new FormControl('', []);
     const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);
     const Passwords = new FormControl('', [Validators.required]);
     const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);
@@ -93,14 +93,14 @@ export class UsuariosComponent implements OnInit {
     const Email = new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
 
     this.usuariosFrom = new FormGroup({
-      IdUsuario: IdUsuario,
-      Nombre: Nombre,
-      Passwords: Passwords,
-      Telefono: Telefono,
-      IdEmpresa: IdEmpresa,
-      IdSede: IdSede,
-      IdPerfil: IdPerfil,
-      Email: Email
+      IdUsuario,
+      Nombre,
+      Passwords,
+      Telefono,
+      IdEmpresa,
+      IdSede,
+      IdPerfil,
+      Email
     });
   }
 }

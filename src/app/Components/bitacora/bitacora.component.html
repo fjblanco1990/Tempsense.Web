@@ -2,71 +2,118 @@
 
 <div class="contenedor-form">
     <h1 class="titleForm">Bitacoras</h1>
-    <form method="get" [formGroup]="empresaFrom">
+    <form method="get" [formGroup]="bitacorasFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Fecha</label>
-                <input type="date" class="form-control" id="inputEmail4" placeholder="nombre empresa">
+                <input type="date" class="form-control" formControlName="Fecha">
+                <span class="help-block validationSpan"
+                    *ngIf="bitacorasFrom.controls['Fecha'].errors?.required && 
+                                (bitacorasFrom.controls['Fecha'].dirty || bitacorasFrom.controls['Fecha'].touched)">
+                    La Fecha es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Hora inicio</label>
-                <input type="time" class="form-control" id="inputEmail4" placeholder="correo">
+                <input type="time" class="form-control"  formControlName="HoraInicio">
+                <span class="help-block validationSpan"
+                    *ngIf="bitacorasFrom.controls['HoraInicio'].errors?.required && 
+                                (bitacorasFrom.controls['HoraInicio'].dirty || bitacorasFrom.controls['HoraInicio'].touched)">
+                   La hora de incio es obligatoria.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Hora fin</label>
-                <input type="time" class="form-control" id="inputPassword4" placeholder="abrebiatura">
+                <input type="time" class="form-control"  formControlName="HoraFin">
+                <span class="help-block validationSpan"
+                    *ngIf="bitacorasFrom.controls['HoraFin'].errors?.required && 
+                                (bitacorasFrom.controls['HoraFin'].dirty || bitacorasFrom.controls['HoraFin'].touched)">
+                    La hora fin es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Dispositivo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+                    <select class="form-control" formControlName="IdDispositivo">
+                        <option value="">-- Seleccione --</option>
+                        <option *ngFor="let dataDispositivo of DataDispositivo" [value]="dataDispositivo.IdDispositivo">
+                            {{dataDispositivo.Nombre}}
+                        </option>
+                    </select>
+                <span class="help-block validationSpan"
+                    *ngIf="bitacorasFrom.controls['IdDispositivo'].errors?.required && 
+                                        (bitacorasFrom.controls['IdDispositivo'].dirty || bitacorasFrom.controls['IdDispositivo'].touched)">
+                    El dispositivo es obligatorio.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Evento</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control"  rows="3" formControlName="Problema" ></textarea>
+                <span class="help-block validationSpan"
+                    *ngIf="bitacorasFrom.controls['Problema'].errors?.required && 
+                                    (bitacorasFrom.controls['Problema'].dirty || bitacorasFrom.controls['Problema'].touched)">
+                    El evento es obligatorio.
+                </span>
+                
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Solución</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control"  rows="3" formControlName="Solucion"></textarea>
+                <span class="help-block validationSpan"
+                    *ngIf="bitacorasFrom.controls['Solucion'].errors?.required && 
+                                    (bitacorasFrom.controls['Solucion'].dirty || bitacorasFrom.controls['Solucion'].touched)">
+                    La solucion es obligatoria.
+                </span>
             </div>
         </div>
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="form-group col-xs-6 col-md-12 col-lg-1">
+                    <button type="submit" class="btn btn-danger backOscuro" (click)="GuardarBitacora()">Guardar</button>
+                </div>
 
-
-        <button type="submit" class="btn btn-danger">Guardar</button>
+                <div class="form-group col-xs-6 col-md-12 col-lg-9">
+                    <button type="submit" class="btn btn-warning backNaranja" (click)="LimpiarFormulario()">Limpiar</button>
+                </div>
+            </div>
+    </div>
     </form>
     <br>
-    <table class="table">
+    <div class="col-xs-12 col-md-12 col-lg-12" *ngIf="DataBitacoras.length <= 0">
+        <br>
+        <div class="alert alert-secondary" role="alert">
+            No hay registros
+        </div>
+    </div>
+    <table class="table" *ngIf="DataBitacoras.length > 0">
         <thead class="thead-light">
             <tr>
-                <th scope="col"># Codigo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Abrebiatura</th>
-                <th scope="col">Nit</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Not. Correo</th>
-                <th scope="col">Not. MSM</th>
-                <th scope="col">Opciones</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Hora inicio</th>
+                <th scope="col">Hora Fin</th>
+                <th scope="col">Dispositivo</th>
+
+                <th scope="col" class="text-center">Opciones</th>
             </tr>
         </thead>
-        <tbody *ngFor="let itemEmpresa of DataEmpresa; let i=index">
+        <tbody *ngFor="let itemBitacora of DataBitacoras; let i=index">
             <tr>
-                <td scope="row">{{itemEmpresa.IdEmpresa}}</td>
-                <td>{{itemEmpresa.Nombre}}</td>
-                <td>{{itemEmpresa.Abr_Empresa}}</td>
-                <td>{{itemEmpresa.Nit}}</td>
-                <td>{{itemEmpresa.Correo}}</td>
-                <td>
-                    {{itemEmpresa.Activo}}
+                <td scope="row">{{itemBitacora.Fecha | date:'yyyy-MM-dd'}}</td>
+                <td>{{itemBitacora.HoraInicio | date:"shortTime"}}</td>
+                <td>{{itemBitacora.HoraFin |  date:"shortTime"}}</td>
+                <td>{{itemBitacora.IdDispositivo.Nombre}}</td>
+                <td class="text-center">
+                     <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal" data-target="#bd-example-modal-lg"
+                    (click)="DetallerBitacora(itemBitacora)">
+                    <i class="far fa-eye"></i>
+                </button>
                 </td>
-                <td>@{{itemEmpresa.NotificaPorCorreo}}</td>
-                <td>@{{itemEmpresa.NotificaPorMSM}}</td>
-
+               
             </tr>
 
         </tbody>
@@ -74,3 +121,73 @@
 </div>
 
 <app-footer></app-footer>
+
+
+<div class="modal fade" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header" style="background: rgba(150, 16, 30, 1); color: white;">
+            <h5 class="modal-title" id="exampleModalLongTitle">Detalle bitacora</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        
+            <div class="form-group" *ngIf="infoDetalle !== undefined && infoDetalle !== null">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label><strong>Dispositivo:</strong> </label>
+                        <br> 
+                        <label>{{infoDetalle.IdDispositivo.Nombre}}</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><strong>Hora inicio:</strong></label>
+                        <br>
+                         <label>{{infoDetalle.HoraInicio | date:"shortTime"}}</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><strong>Hora Fin:</strong></label>
+                        <br>
+                        <label>{{infoDetalle.HoraFin | date:"shortTime"}}</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label><strong>Fecha:</strong></label>
+                        <br>
+                        <label>{{infoDetalle.Fecha | date:'yyyy-MM-dd' }}</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><strong>Evento:</strong></label>
+                        <br>
+                        <label>
+                            {{infoDetalle.Problema}}
+                        </label>
+                    </div>
+                    
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        
+                        <br>
+                        <label><strong>Solución:</strong></label>
+                        <br>
+                        <label>
+                            {{infoDetalle.Solucion}}
+                        </label>
+                    </div>
+                </div>
+        
+            </div>
+        
+        </div>
+        <div class="modal-footer">
+            <div class="form-group col-xs-12 col-md-12 col-lg-2">
+                <button type="submit" class="btn btn-danger backNaranja" id="cerrarModal" #cerrarModal
+                    data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

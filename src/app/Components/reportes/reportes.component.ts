@@ -24,15 +24,15 @@ export class ReportesComponent implements OnInit {
   }
 
 
-  GetAllEmpresas() {
+  GetAllEmpresas(): any {
     this.empresasService.GetAllEmpresas().subscribe(
       resutl => {
         this.DataEmpresa = resutl;
       }
-    )
+    );
   }
 
-  validarEmpresas() {
+  validarEmpresas(): any {
 
     const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);
     const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);

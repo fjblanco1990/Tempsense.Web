@@ -4,8 +4,20 @@
     border: 1px solid #E1E1E1;
     border-radius: 0.2em;
     padding: 25px;
+    margin-bottom: 100px;
 }
 
 .titleForm {
    color: rgba(150,16,30,1);
+}
+
+.backOscuro {
+  background: rgba(150, 16, 30, 1);
+  border-color: rgba(150, 16, 30, 1);
+}
+
+.backNaranja {
+
+  background: rgb(234 151 0);
+  border-color: rgb(234 151 0);
 }

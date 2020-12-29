@@ -15,20 +15,20 @@ export class SedesComponent implements OnInit {
   constructor(public empresasService: EmpresasService) { }
 
   ngOnInit(): void {
-    this.validarEmpresas();
-    this.GetAllEmpresas();
+    // this.validarEmpresas();
+    // this.GetAllEmpresas();
   }
 
 
-  GetAllEmpresas() {
+  GetAllEmpresas(): any {
     this.empresasService.GetAllEmpresas().subscribe(
       resutl => {
         this.DataEmpresa = resutl;
       }
-    )
+    );
   }
 
-  validarEmpresas() {
+  validarEmpresas(): any {
 
     const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);
     const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);

@@ -7,7 +7,7 @@
         <label class="ac-label" for="ac-1">Crear empresas</label>
         <article class="ac-text">
             <div class="table-responsive scrollTabla">
-               <app-empresas-config></app-empresas-config>
+               <app-empresas-config #empresaConfigComponent  (emitEventEmpresa)="RecibiarCambios($event)"></app-empresas-config>
              </div>
         </article>
     </div>   
@@ -16,7 +16,7 @@
         <label class="ac-label" for="ac-2">Crear Sedes</label>
         <article class="ac-text">
             <div class="table-responsive scrollTabla ">
-                <app-sedes-config></app-sedes-config>
+                <app-sedes-config #sedesConfigComponent></app-sedes-config>
             </div>
        </article>
     </div>
@@ -25,7 +25,7 @@
         <label class="ac-label" for="ac-3">Crear umbral</label>
         <article class="ac-text">
             <div class="table-responsive scrollTabla ">
-               <app-umbral-config></app-umbral-config>
+               <app-umbral-config #umbralConfigComponent></app-umbral-config>
             </div>
        </article>
     </div>
@@ -34,7 +34,7 @@
         <label class="ac-label" for="ac-4">Crear dispositivos</label>
         <article class="ac-text">
             <div class="table-responsive scrollTabla ">
-               <app-dispositvos-config></app-dispositvos-config>
+               <app-dispositvos-config #dispositivoConfigComponent  (emitEventDispo)="RecibirCambiosDispo($event)"></app-dispositvos-config>
             </div>
        </article>
     </div>

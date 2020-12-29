@@ -1,74 +1,126 @@
 <app-header></app-header>
 
 <div class="contenedor-form">
-    <h1 class="titleForm">Umbrales</h1>
-    <form method="get" [formGroup]="empresaFrom">
+    <app-umbral-config></app-umbral-config>
+    <!-- <form method="get" [formGroup]="umbralFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Valor minimo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nombre empresa">
+                <label for="inputEmail4">Valor mínimo</label>
+                <input type="number" class="form-control" id="inputEmail4" placeholder="valor mínimo"
+                    formControlName="TemperaturaMin">
+                <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['TemperaturaMin'].errors?.required && 
+                            (umbralFrom.controls['TemperaturaMin'].dirty || umbralFrom.controls['TemperaturaMin'].touched)">
+                    El valor minimo es obligatorio.
+                </span>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Valor maximo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="correo">
+                <label for="inputEmail4">Valor máximo</label>
+                <input type="number" class="form-control" id="inputEmail4" placeholder="valor máximo"
+                    formControlName="TemperaturaMax">
+                <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['TemperaturaMax'].errors?.required && 
+                            (umbralFrom.controls['TemperaturaMax'].dirty || umbralFrom.controls['TemperaturaMax'].touched)">
+                    El valor maximo es obligatorio.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Tolerancia minima</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="abrebiatura">
+                <label for="inputPassword4">Tolerancia mínima</label>
+                <input type="number" class="form-control" id="inputPassword4" placeholder="tolerancia mínima"
+                    formControlName="ToleranciaMin">
+                <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['ToleranciaMin'].errors?.required && 
+                            (umbralFrom.controls['ToleranciaMin'].dirty || umbralFrom.controls['ToleranciaMin'].touched)">
+                    La tolerancia mínima es obligatoria.
+                </span>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputEmail4">tolerancia maxima</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+                <label for="inputEmail4">Tolerancia máxima</label>
+                <input type="number" class="form-control" id="inputEmail4" placeholder="tolerancia máxima"
+                    formControlName="ToleranciaMax">
+                <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['ToleranciaMax'].errors?.required && 
+                            (umbralFrom.controls['ToleranciaMax'].dirty || umbralFrom.controls['ToleranciaMax'].touched)">
+                    La tolerancia máxima es obligatoria.
+                </span>
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Dispositivo</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="nit">
+                <select class="form-control" formControlName="IdDispositivo">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataDispositivo of DataDispositivo" [value]="dataDispositivo.IdDispositivo">
+                        {{dataDispositivo.Nombre}}
+                    </option>
+                </select>
+                <span class="help-block validationSpan"
+                    *ngIf="umbralFrom.controls['IdDispositivo'].errors?.required && 
+                            (umbralFrom.controls['IdDispositivo'].dirty || umbralFrom.controls['IdDispositivo'].touched)">
+                    El dispositivo es obligatorio.
+                </span>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-danger backOscuro">Guardar</button>
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="form-group col-xs-6 col-md-12 col-lg-1">
+                    <button type="submit" class="btn btn-danger backOscuro" (click)="CrearUmbral()">Guardar</button>
+                </div>
+
+                <div class="form-group col-xs-6 col-md-12 col-lg-1" style="margin-right: 12px;">
+                    <button type="submit" class="btn btn-warning backNaranja" [disabled]="!activarActualizar"
+                        (click)="ActualizarUmbral()">Actualizar</button>
+                </div>
+
+                <div class="form-group col-xs-6 col-md-12 col-lg-9">
+                    <button type="submit" class="btn btn-warning backNaranja"
+                        (click)="LimpiarFormulario()">Limpiar</button>
+                </div>
             </div>
         </div>
     </form>
     <br>
-    <table class="table">
+    <div class="col-xs-12 col-md-12 col-lg-12" *ngIf="DataUmbral.length <= 0">
+        <br>
+        <div class="alert alert-secondary" role="alert">
+            No hay registros
+        </div>
+    </div>
+
+    <table class="table" *ngIf="DataUmbral.length > 0">
         <thead class="thead-light">
             <tr>
-                <th scope="col"># Codigo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Abrebiatura</th>
-                <th scope="col">Nit</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Not. Correo</th>
-                <th scope="col">Not. MSM</th>
+                <th scope="col">Valor Mínimo</th>
+                <th scope="col">Valor Máximo</th>
+                <th scope="col">Tolerancia Mínima</th>
+                <th scope="col">Tolerancia Máxima</th>
+                <th scope="col">Dispositivo</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
-        <tbody *ngFor="let itemEmpresa of DataEmpresa; let i=index">
+        <tbody *ngFor="let itemUmbral of DataUmbral; let i=index">
             <tr>
-                <td scope="row">{{itemEmpresa.IdEmpresa}}</td>
-                <td>{{itemEmpresa.Nombre}}</td>
-                <td>{{itemEmpresa.Abr_Empresa}}</td>
-                <td>{{itemEmpresa.Nit}}</td>
-                <td>{{itemEmpresa.Correo}}</td>
-                <td>
-                    {{itemEmpresa.Activo}}
-                </td>
-                <td>@{{itemEmpresa.NotificaPorCorreo}}</td>
-                <td>@{{itemEmpresa.NotificaPorMSM}}</td>
-
+                <td scope="row">{{itemUmbral.Temperatura_min}}</td>
+                <td>{{itemUmbral.Temperatura_max}}</td>
+                <td>{{itemUmbral.Tolerancia_min}}</td>
+                <td>{{itemUmbral.Tolerancia_max}}</td>
+                <td>{{itemUmbral.IdDispositivo}}</td>
+                <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal"
+                    data-target="#ModelDetalleCuenta" (click)="MappearEmpresa(itemUmbral)">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal"
+                    data-target="#ModelDetalleCuenta" (click)="EliminarUmbral(itemUmbral.IdUmbral)">
+                    <i class="far fa-trash-alt"></i>
+                </button>
             </tr>
 
         </tbody>
-    </table>
+    </table> -->
 </div>
 
 <app-footer></app-footer>

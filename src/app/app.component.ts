@@ -20,10 +20,10 @@ export class AppComponent implements OnInit {
   public ValidarSesionModel = new ValidarSesionModel();
   @Output() mostrarLayout = false;
   //#endregion
-  constructor(private LoginService: LoginService, private router: Router, private location: PlatformLocation) {
+  constructor(private loginService: LoginService, private router: Router, private location: PlatformLocation) {
   }
 
-  ngOnInit() {
+  ngOnInit(): any {
     this.mostrarLayout = false;
   }
 

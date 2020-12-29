@@ -1,8 +1,9 @@
 <app-header></app-header>
 
 <div class="contenedor-form">
-    <h1 class="titleForm">Dispositivos</h1>
-    <form method="get" [formGroup]="dispositivoFrom">
+    <app-dispositvos-config></app-dispositvos-config>
+    <!-- <h1 class="titleForm">Dispositivos</h1> -->
+    <!-- <form method="get" [formGroup]="dispositivoFrom">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nombre </label>
@@ -68,28 +69,26 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Dispositivo</th>
-                <th scope="col">Nit</th>
-                <th scope="col">Id Dispositivo</th>
+                <th scope="col">Tipo medida</th>
+                <th scope="col">Sede</th>
+                <th scope="col">Timpo notificación</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
-        <tbody *ngFor="let itemEmpresa of DataEmpresa; let i=index">
+        <tbody *ngFor="let itemDispo of DataDispositivos; let i=index">
             <tr>
-                <td scope="row">{{itemEmpresa.IdEmpresa}}</td>
-                <td>{{itemEmpresa.Nombre}}</td>
-                <td>{{itemEmpresa.Abr_Empresa}}</td>
-                <td>{{itemEmpresa.Nit}}</td>
-                <td>{{itemEmpresa.Correo}}</td>
+                <td scope="row">{{itemDispo.IdDispositivo}}</td>
+                <td>{{itemDispo.Nombre}}</td>
+                <td>{{itemDispo.IdTipoMedida}}</td>
+                <td>{{itemDispo.IdSede}}</td>
+                <td>{{itemDispo.TiempoNotificacion}}</td>
                 <td>
-                    {{itemEmpresa.Activo}}
+                    {{itemDispo.Activo}}
                 </td>
-       
-
             </tr>
-
         </tbody>
-    </table>
+    </table> -->
 </div>
 
 <app-footer></app-footer>

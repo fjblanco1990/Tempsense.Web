@@ -21,7 +21,7 @@ export class EnvironmentService {
         this.getUrlEnvironment();
     }
 
-    private getUrlEnvironment() {
+    private getUrlEnvironment(): any {
         // Cambiar el valor a true cuando se publique
         // NOTA: Enviar correo cada vez que se realice una publicación final
         // environment.production = true;

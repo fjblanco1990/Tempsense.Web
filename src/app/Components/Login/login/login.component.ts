@@ -13,33 +13,33 @@ import { LoginService } from 'src/app/Services/Login/Login.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('cerrarModal', { static: false }) cerrarModal: ElementRef;
-  public url ='http://localhost:4200';
+  public url = 'http://localhost:4200';
   public MostrarRegistro = false;
   public loginFrom: any;
-  constructor(private LoginService: LoginService, private notificacionesService: NotificacionesService, private router: Router) { }
+  constructor(private loginService: LoginService, private notificacionesService: NotificacionesService, private router: Router) { }
 
   ngOnInit(): void {
      this.MostrarRegistro = false;
      this.validarLogin();
-    
-      window.location.hash = "no-back-button";
-      window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
-      window.onhashchange = function () { window.location.hash = "no-back-button"; }
-    
+     window.location.hash = 'no-back-button';
+     window.location.hash = 'Again-No-back-button'; // esta linea es necesaria para chrome
+     window.onhashchange = () => {
+       window.location.hash = 'no-back-button';
+    };
   }
 
-  IniciarSesion() {
+  IniciarSesion(): any {
     if (this.loginFrom.valid) {
-      this.LoginService.CrearSesion(JSON.stringify(this.loginFrom.value)).subscribe(
+      this.loginService.CrearSesion(JSON.stringify(this.loginFrom.value)).subscribe(
         resutl => {
-          if(resutl.Token !== null) {
+          if (resutl.Token !== null) {
             localStorage.setItem('InfoLogin', window.btoa(unescape(encodeURIComponent(JSON.stringify(resutl)))));
-             window.location.href = 'http://localhost:4200/';
+            window.location.href = 'http://localhost:4200/';
           } else {
             this.notificacionesService.Advertencia(resutl.Mensaje);
             this.loginFrom.reset();
           }
-        }, 
+        },
         error => {
 
         });
@@ -49,21 +49,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  recibirFormUsuario(event) {
-    if(event) {
+  recibirFormUsuario(event): any {
+    if (event) {
       this.MostrarRegistro = false;
     }
   }
 
-  RegistrarUsuarios () {
+  RegistrarUsuarios(): any {
     this.MostrarRegistro = true;
   }
 
-  RecuperarContrasena() {
-    
-    if (this.loginFrom.value.recuperacion !== '' && this.loginFrom.value.recuperacion !== null && this.loginFrom.value.recuperacion !== undefined) {
+  RecuperarContrasena(): any {
+    if (this.loginFrom.value.recuperacion !== '' && this.loginFrom.value.recuperacion !== null &&
+     this.loginFrom.value.recuperacion !== undefined) {
       const emialIngresado = this.loginFrom.value.recuperacion;
-      this.LoginService.RecuperarContrasena(this.loginFrom.value.recuperacion).subscribe(
+      this.loginService.RecuperarContrasena(this.loginFrom.value.recuperacion).subscribe(
         resutl => {
             this.notificacionesService.ExitosoGeneral('La contraseña se envio a su correo.');
             this.loginFrom.reset();
@@ -76,26 +76,24 @@ export class LoginComponent implements OnInit {
     } else {
       this.notificacionesService.Error('El correo es obligatorio.');
     }
-    
- 
   }
 
-  ValidarErrorForm(formulario: any) {
+  ValidarErrorForm(formulario: any): any {
     Object.keys(formulario.controls).forEach(field => { // {1}
       const control = formulario.get(field);            // {2}
       control.markAsTouched({ onlySelf: true });       // {3}
     });
   }
 
-  validarLogin() {
+  validarLogin(): any {
     const Email = new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
     const password = new FormControl('', [Validators.required]);
     const recuperacion = new FormControl('', []);
 
     this.loginFrom = new FormGroup({
-      Email: Email,
-      password: password,
-      recuperacion: recuperacion
+      Email,
+      password,
+      recuperacion
     });
   }
 }

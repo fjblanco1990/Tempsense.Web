@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Unsubscribable } from 'rxjs';
 import { ValidarSesionModel } from 'src/app/Models/Login-Model/login.model';
+import { DispositivosService } from 'src/app/Services/Dispositivos/Dispositivos.services';
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
 import { LoginService } from 'src/app/Services/Login/Login.service';
 import { MaestrosService } from 'src/app/Services/Maestros/Maestros.service';
@@ -10,107 +12,125 @@ import { SedesService } from 'src/app/Services/Sedes/Sedes.service';
   selector: 'app-dispositivos',
   templateUrl: './dispositivos.component.html',
   styleUrls: ['./dispositivos.component.css'],
-  providers: [EmpresasService, LoginService, SedesService, MaestrosService]
+  providers: [EmpresasService, LoginService, SedesService, MaestrosService, DispositivosService]
 })
-export class DispositivosComponent implements OnInit {
+export class DispositivosComponent implements OnInit, OnDestroy {
 
   public DataEmpresa: any;
   public DataSedes: any;
   public DataMedidas: any;
+  public DataDispositivos: any;
   public dispositivoFrom: any;
   public activarActualizar: boolean;
+
+  //#region Variables unsuscribe
+  public unsServices: Unsubscribable;
+  //#endregion
+
   public ValidarSesionModel = new ValidarSesionModel();
   constructor(public empresasService: EmpresasService, public sedesService: SedesService,
-    private LoginService: LoginService, private mestrosService: MaestrosService) { }
+              private loginService: LoginService, private mestrosService: MaestrosService,
+              private dispositivosService: DispositivosService) { }
 
   ngOnInit(): void {
-    this.validarDispositivo();
-    this.GetAllEmpresas();
-    this.GetMedidas();
+    // this.validarDispositivo();
+    // this.GetAllEmpresas();
+    // this.GetMedidas();
+    // this.GetAllDispositivos();
   }
 
+  ngOnDestroy(): void  {
+    this.unsServices.unsubscribe();
+  }
 
-
-  GetAllSedes() {
-    this.sedesService.GetSedeXEmpresa(this.dispositivoFrom.get('Empresa').value).subscribe(
+  GetAllSedes(): any {
+    this.unsServices = this.sedesService.GetSedeXEmpresa(this.dispositivoFrom.get('Empresa').value).subscribe(
       resutl => {
         this.DataSedes = resutl;
       }
-    )
+    );
   }
 
-  GetAllEmpresas() {
+  GetAllEmpresas(): any {
     this.empresasService.GetAllEmpresas().subscribe(
       resutl => {
         this.DataEmpresa = resutl;
       }
-    )
+    );
   }
 
-  GetMedidas() {
+  GetMedidas(): any {
     this.mestrosService.GetAllMedidas().subscribe(
       resutl => {
         this.DataMedidas = resutl;
       }
-    )
+    );
   }
 
-  GuardarDispositivo() {
+  GetAllDispositivos(): any {
+    this.dispositivosService.GetAllDispositivos().subscribe(
+      result => {
+        this.DataDispositivos =  result;
+      }
+    );
+  }
+
+  GuardarDispositivo(): any {
     if (this.dispositivoFrom.valid) {
-      this.sedesService.SaveSede(JSON.stringify(this.dispositivoFrom.value)).subscribe(
+      this.dispositivosService.SaveDispositivos(JSON.stringify(this.dispositivoFrom.value)).subscribe(
         resutl => {
           this.dispositivoFrom.reset();
-          this.GetAllSedes();
+          this.GetAllDispositivos();
         }
-      )
+      );
     } else {
       this.ValidarErrorForm(this.dispositivoFrom);
     }
   }
 
-  MappearEmpresa(id) {
+  MappearEmpresa(id): any {
 
   }
 
-  ActualizarUmbral() {
+  ActualizarUmbral(): any {
     if (this.dispositivoFrom.valid) {
       this.sedesService.UpdateSede(JSON.stringify(this.dispositivoFrom.value)).subscribe(
         resutl => {
           this.dispositivoFrom.reset();
           this.GetAllSedes();
         }
-      )
+      );
     } else {
       this.ValidarErrorForm(this.dispositivoFrom);
     }
   }
 
-  EliminarSede(id) {
+  EliminarSede(id): any {
     if (this.dispositivoFrom.valid) {
       this.sedesService.DeleteSede(JSON.stringify(id)).subscribe(
         resutl => {
           this.dispositivoFrom.reset();
           this.GetAllSedes();
         }
-      )
+      );
     } else {
       this.ValidarErrorForm(this.dispositivoFrom);
     }
   }
 
-  ValidarErrorForm(formulario: any) {
+  ValidarErrorForm(formulario: any): any {
     Object.keys(formulario.controls).forEach(field => { // {1}
       const control = formulario.get(field);            // {2}
       control.markAsTouched({ onlySelf: true });       // {3}
     });
   }
 
-  ValidarSesion() {
+  ValidarSesion(): any {
     if (localStorage.getItem('InfoLogin') !== null) {
       const infoLogin = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
       this.ValidarSesionModel.IdUsuario = infoLogin.IdUsuario;
       this.ValidarSesionModel.IdSesionUsuario = infoLogin.IdSesionUsuario;
-      this.LoginService.ValidarSesionActiva(JSON.stringify(this.ValidarSesionModel)).subscribe(
+      this.loginService.ValidarSesionActiva(JSON.stringify(this.ValidarSesionModel)).subscribe(
         resutl => {
           if (resutl) {
             // validar si la persona conectada no tiene permisos para el modulo devolverlo al incio
@@ -127,7 +147,7 @@ export class DispositivosComponent implements OnInit {
     }
   }
 
-  validarDispositivo() {
+  validarDispositivo(): any {
 
     const IdDispositivo = new FormControl('', []);
     const Nombre = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zñÑ ]*')]);
@@ -138,14 +158,13 @@ export class DispositivosComponent implements OnInit {
     const Activo = new FormControl('', [Validators.required]);
 
     this.dispositivoFrom = new FormGroup({
-      IdDispositivo: IdDispositivo,
-      Nombre: Nombre,
-      IdTipoMedida: IdTipoMedida,
-      Empresa: Empresa,
-      IdSede: IdSede,
-      TiempoNotificacion: TiempoNotificacion,
-      Activo: Activo
+      IdDispositivo,
+      Nombre,
+      IdTipoMedida,
+      Empresa,
+      IdSede,
+      TiempoNotificacion,
+      Activo
     });
   }
-
 }
