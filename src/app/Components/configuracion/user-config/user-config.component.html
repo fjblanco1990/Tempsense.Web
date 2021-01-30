@@ -4,7 +4,7 @@
     <h1 class="titleForm">Usuarios</h1>
     <form method="get" [formGroup]="usuariosFrom">
         <div class="form-row">
-          
+            
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nombre:</label>
                 <input class="form-control" type="text" name="name" placeholder="Nombre..." formControlName="Nombre">
@@ -35,7 +35,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Telefono o Celular:</label>
-                <input class="form-control" type="text" placeholder="Telfono o Celular..." formControlName="Telefono">
+                <input class="form-control" type="text" placeholder="Telfono o Celular..." formControlName="Telefono" maxlength="11">
                 <span class="focus-input-from"></span>
                 <span class="help-block validationSpan"
                     *ngIf="usuariosFrom.controls['Telefono'].errors?.required && 
@@ -98,18 +98,16 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Sede:</label>
-                    <select class="form-control" name="" id="" formControlName="IdSede">
+                    <select class="form-control" name="" id="" formControlName="IdSede" (change)="addSedesTags($event)">
                         <option value="0" disabled selected>Seleccióne Sede...</option>
-                        <option *ngFor="let dataSedes of DataSedes" [value]="dataSedes.IdSede">
+                        <option *ngFor="let dataSedes of DataSedes" [ngValue]="dataSedes">
                             {{dataSedes.Nombre}}
                         </option>
                     </select>
+                    <br>
+                    <tag-input formControlName="sedes" secondaryPlaceholder="" placeholder="Sedes" [identifyBy]="'IdSede'" [displayBy]="'Nombre'" (onRemove)="RemovedTags($event)"></tag-input>
                     <span class="focus-input-from "></span>
-                    <span class="help-block validationSpan"
-                        *ngIf="usuariosFrom.controls['IdSede'].errors?.required && 
-                                                           (usuariosFrom.controls['IdSede'].dirty || usuariosFrom.controls['IdSede'].touched)">
-                        La sede es obligatoria.
-                    </span>
+                  
             </div>
         </div>
         <div class="col-xs-12 col-md-12 col-lg-12">
@@ -118,14 +116,14 @@
                    
                         <!-- <input type="submit" class="btn-register" value="Guardar" (click)="GuardarUsuarios()"> -->
                 <!-- [disabled]="!activarGuardar" -->
-                    <button type="submit" class="btn btn-danger backOscuro" 
+                    <button type="submit" class="btn btn-danger backOscuro" [disabled]="!activarGuardar" 
                          (click)="GuardarUsuarios()">Guardar</button>
                 </div>
 
-                <!-- <div class="form-group col-xs-6 col-md-12 col-lg-1" style="margin-right: 12px;">
+                <div class="form-group col-xs-6 col-md-12 col-lg-1" style="margin-right: 12px;">
                     <button type="submit" class="btn btn-warning backNaranja" [disabled]="!activarActualizar"
-                        (click)="ActualizarEmpresa()">Actualizar</button>
-                </div>-->
+                        (click)="ActualizarUsuarios()">Actualizar</button>
+                </div>
 
                 <div class="form-group col-xs-6 col-md-12 col-lg-9">
                     <button type="submit" class="btn btn-warning backNaranja"
@@ -157,9 +155,14 @@
             <tr>
                 <td scope="row">{{itemUser.Nombre}}</td>
                 <td>{{itemUser.Telefono}}</td>
-                <td>{{itemUser.IdPerfil}}</td>
-                <td>{{itemUser.IdEmpresa}}</td>
-                <td>{{itemUser.IdSede}} </td>
+                <td>{{itemUser.IdPerfil.Nombre}}</td>
+                <td>{{itemUser.IdEmpresa.Nombre}}</td>
+                <td>
+                    <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal" data-target="#bd-example-modal-lg"
+                        (click)="DetallerSedes(itemUser.sedes)">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </td>
                 <td>{{itemUser.Email}}</td>
                 <td>
                     <button class="btn Gt-btn-verde btn-icon legitRipple" data-toggle="modal"
@@ -179,3 +182,38 @@
 </div>
 
 <app-footer></app-footer>
+
+<div class="modal fade" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: rgba(150, 16, 30, 1); color: white;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sedes usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 col-md-12 col-lg-12" *ngIf="DataSede.length <= 0">
+                    <br>
+                    <div class="alert alert-secondary" role="alert">
+                        No tiene sedes
+                    </div>
+                </div>
+                <table class="table" *ngIf="DataSede.length > 0">
+                    <tbody *ngFor="let itemSede of DataSede; let i=index">
+                        <tr>
+                            <td scope="row">{{itemSede.Nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group col-xs-12 col-md-12 col-lg-2">
+                    <button type="submit" class="btn btn-danger backNaranja" id="cerrarModal" #cerrarModal
+                        data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>

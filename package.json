@@ -26,6 +26,7 @@
     "datatables.net-dt": "^1.10.22",
     "jquery": "^3.5.1",
     "ngx-bootstrap": "^6.1.0",
+    "ngx-chips": "^2.2.2",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.3.2",
     "tslib": "^2.0.0",

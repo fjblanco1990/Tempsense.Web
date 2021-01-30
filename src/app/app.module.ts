@@ -30,6 +30,7 @@ import { UmbralConfigComponent } from './Components/configuracion/umbral-config/
 import { BitacorasConfigComponent } from './Components/configuracion/bitacoras-config/bitacoras-config.component';
 import { DispositvosConfigComponent } from './Components/configuracion/dispositvos-config/dispositvos-config.component';
 import { SedesConfigComponent } from './Components/configuracion/sedes-config/sedes-config.component';
+import { TagInputModule } from 'ngx-chips';
 // import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
 
 @NgModule({
@@ -62,6 +63,7 @@ import { SedesConfigComponent } from './Components/configuracion/sedes-config/se
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    TagInputModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),

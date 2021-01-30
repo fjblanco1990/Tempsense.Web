@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SedesModel } from 'src/app/Models/sedes.model';
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
 import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service';
 import { PerfilesService } from 'src/app/Services/Perfiles/Perfiles.service';
@@ -17,7 +18,10 @@ export class UsuariosComponent implements OnInit {
   //#region Variables carga
   public DataEmpresa: any;
   public DataSedes: any;
-  public DataPerfiles: any;
+  public DataPerfiles: any[] = [];
+  private sedesModel = new SedesModel();
+  private sedesList: SedesModel[] = [];
+  private sedesLst: any[] = [];
   public usuariosFrom: any;
   //#endregion
   @Output() emitEventClose: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -37,7 +41,13 @@ export class UsuariosComponent implements OnInit {
 
   GuardarUsuarios(): any {
     if (this.usuariosFrom.valid) {
+      this.sedesList = [];
       this.usuariosFrom.get('IdUsuario').setValue(0);
+      this.sedesModel.IdSede = +this.usuariosFrom.value.sedes;
+      this.sedesModel.Nombre = '';
+      this.sedesModel.IdEmpresa = +this.usuariosFrom.value.IdEmpresa;
+      this.sedesLst.push(this.sedesModel);
+      this.usuariosFrom.value.sedes = this.sedesLst;
       this.usuariosService.GuardarUsuarios(JSON.stringify(this.usuariosFrom.value)).subscribe(
         resutl => {
           this.usuariosFrom.reset();
@@ -70,7 +80,11 @@ export class UsuariosComponent implements OnInit {
   GetAllProfileS(): any {
     this.perfilesService.GetAllProfiles().subscribe(
       resutl => {
-        this.DataPerfiles = resutl;
+        resutl.forEach(element => {
+          if (element.IdPerfil === 2) {
+            this.DataPerfiles.push(element);
+          }
+        });
       }
     );
   }
@@ -88,7 +102,7 @@ export class UsuariosComponent implements OnInit {
     const Passwords = new FormControl('', [Validators.required]);
     const Telefono = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*')]);
     const IdEmpresa = new FormControl('', [Validators.required]);
-    const IdSede = new FormControl('', [Validators.required]);
+    const sedes = new FormControl('', [Validators.required]);
     const IdPerfil = new FormControl('', [Validators.required]);
     const Email = new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
 
@@ -98,7 +112,7 @@ export class UsuariosComponent implements OnInit {
       Passwords,
       Telefono,
       IdEmpresa,
-      IdSede,
+      sedes,
       IdPerfil,
       Email
     });
