@@ -31,6 +31,7 @@ import { BitacorasConfigComponent } from './Components/configuracion/bitacoras-c
 import { DispositvosConfigComponent } from './Components/configuracion/dispositvos-config/dispositvos-config.component';
 import { SedesConfigComponent } from './Components/configuracion/sedes-config/sedes-config.component';
 import { TagInputModule } from 'ngx-chips';
+import { ChartsModule } from 'ng2-charts';
 // import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
 
 @NgModule({
@@ -69,6 +70,7 @@ import { TagInputModule } from 'ngx-chips';
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
+    ChartsModule
     // DataTablesModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],

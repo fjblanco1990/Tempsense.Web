@@ -2,19 +2,19 @@
 
 <div class="contenedor-form">
     <h1 class="titleForm">Reporte</h1>
-    <form method="get" [formGroup]="empresaFrom">
+    <form method="get" [formGroup]="reporteFrom">
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="inputEmail4">Fecha inicio</label>
-                <input type="date" class="form-control" id="inputEmail4" placeholder="nombre empresa">
+                <input type="date" class="form-control"  formControlName="FechaInicio">
             </div>
             <div class="form-group col-md-4">
                 <label for="inputEmail4">Fecha fin</label>
-                <input type="date" class="form-control" id="inputEmail4" placeholder="correo">
+                <input type="date" class="form-control"  formControlName="FechaFin" >
             </div>
             <div class="form-group col-md-4">
                 <label for="inputPassword4">Filtro</label>
-                <select class="form-control">
+                <select class="form-control" formControlName="Filtro">
                     <option>-- Seleccione --</option>
                 </select>
             </div>
@@ -22,24 +22,28 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="inputEmail4">Empresa</label>
-                <select class="form-control">
-                    <option>-- Seleccione --</option>
+                <select class="form-control" formControlName="Empresa" (change)="GetAllSedesId()"> 
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataEmp of DataEmpresa" [value]="dataEmp.IdEmpresa">
+                        {{dataEmp.Nombre}}
+                    </option>
                 </select>
             </div>
             <div class="form-group col-md-4">
                 <label for="inputEmail4">Sede</label>
-                <select class="form-control">
-                    <option>-- Seleccione --</option>
+                <select class="form-control"  formControlName="Sede">
+                    <option value="">-- Seleccione --</option>
+                    <option *ngFor="let dataSed of DataSede" [value]="dataSed.IdSede">
+                        {{dataSed.Nombre}}
+                    </option>
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="inputEmail4">Sensor</label>
-                <select class="form-control">
+                <label for="inputEmail4">Dispositivo</label>
+                <select class="form-control"  formControlName="Dispositivo">
                     <option>-- Seleccione --</option>
                 </select>
             </div>
-            
-           
         </div>
         <div class="form-row">
             <div class="form-group col-md-9"></div>
@@ -52,6 +56,42 @@
                         style="margin-top: 5px;"></i></button>
             </div>
         </div>
+        <br>
+        <div class="form-row">
+            <!-- <div class="flex">
+                <div class="flex-item"> -->
+                    <!-- <div style="display: block;"> -->
+                        <canvas baseChart id="myChart" 
+                            [datasets]="lineChartData" 
+                            [labels]="lineChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors" 
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType" 
+                            [plugins]="lineChartPlugins" 
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                    <!-- </div> -->
+                <!-- </div> -->
+                <!-- <div class="flex-item"> -->
+                    <!-- <table class="table table-responsive table-condensed">
+                        <tr>
+                            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                        </tr>
+                        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+                            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                        </tr>
+                    </table> -->
+                    <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
+                    <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+                    <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
+                    <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
+                    <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        </div>
+        
+        <br>
         <div class="col-xs-12 col-md-12 col-lg-12">
             <table id="example" datatable  class="row-border hover">
                 <thead>

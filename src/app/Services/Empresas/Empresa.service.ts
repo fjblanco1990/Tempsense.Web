@@ -17,6 +17,11 @@ export class EmpresasService {
         return this.http.get(this.url, { headers: this.headers });
     }
 
+    GetEmpresaId(id: any): Observable<any> {
+        this.url = this.envirment.Url + '/ListarEmpresaId?empresa=' + id;
+        return this.http.get(this.url, { headers: this.headers });
+    }
+
     SaveEmpresa(Datos: any): Observable<any> {
         const httpOptions = {
             headers: new HttpHeaders({
