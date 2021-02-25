@@ -1,12 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpresasService } from 'src/app/Services/Empresas/Empresa.service';
-// import * as Chart from 'chart.js';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective, Color, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { SedesService } from 'src/app/Services/Sedes/Sedes.service';
 import { DispositivosService } from 'src/app/Services/Dispositivos/Dispositivos.services';
+import { ReporteService } from 'src/app/Services/Maestros/Reporte.service';
+import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service';
+import { Subject, Subscription } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
+import { data } from 'jquery';
+import { title } from 'process';
+
 
 declare var $: any;
 
@@ -14,7 +20,7 @@ declare var $: any;
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.css'],
-  providers: [EmpresasService, SedesService, DispositivosService]
+  providers: [EmpresasService, SedesService, DispositivosService, ReporteService, NotificacionesService]
 })
 export class ReportesComponent implements OnInit {
 
@@ -113,15 +119,27 @@ export class ReportesComponent implements OnInit {
   public DataSede: any;
   public DataDispositivo: any;
   public reporteFrom: any;
+  public sendFrom: any;
+  public DataReport: any[] = [];
+  ActivarDataTable = false;
+  private infoLogin = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  timerSubscription: Subscription;
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   constructor(public empresasService: EmpresasService, public sedesService: SedesService,
-              private dispositivosService: DispositivosService) { }
+              private dispositivosService: DispositivosService, private reporteService: ReporteService,
+              private notificacionesService: NotificacionesService) { }
 
 
   ngOnInit(): void {
     this.ValidarPerfilUser();
     this.validarEmpresas();
-    $('#example').DataTable();
+    this.DataReport = [];
+    this.dtOptions.destroy = true;
+
 
     // this.canvas = document.getElementById('myChart'); this.ctx = this.canvas.getContext('2d'); const myChart = new Chart(this.ctx, {
     //   type: 'line', data: {
@@ -142,6 +160,7 @@ export class ReportesComponent implements OnInit {
     //     display: true
     //   }
     // });
+    this.GetDataAllReport();
   }
 
   //#region Reporte Chart Js.
@@ -175,8 +194,8 @@ export class ReportesComponent implements OnInit {
   public pushOne(): void {
     this.lineChartData.forEach((x, i) => {
       const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
+      const DataList: number[] = x.data as number[];
+      DataList.push(num);
     });
     this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
   }
@@ -233,24 +252,79 @@ export class ReportesComponent implements OnInit {
     );
   }
 
-  GetAllDispositivosId(idUserEmp): any {
-    this.dispositivosService.GetAllDispositivosUser(idUserEmp).subscribe(
+  GetAllDispositivosSedeId(): any {
+    const idUserEmp = this.reporteFrom.get('Sede').value;
+    this.dispositivosService.GetAllDispositivosSede(idUserEmp).subscribe(
       resutl => {
         this.DataDispositivo = resutl;
       }
     );
   }
 
+  SendReportMail(): void {
+    if (this.sendFrom.valid) {
+    const email = this.sendFrom.get('email').value;
+    this.reporteService.SendReport(email).subscribe(
+      result => {
+        this.notificacionesService.ExitosoGeneral('El reporte se envio con exito');
+      }, error => {
+
+      }
+    );
+    } else {
+      this.ValidarErrorForm(this.sendFrom);
+    }
+  }
+
+  GetDataAllReport(): void {
+    this.DataReport = [];
+    $('#example').DataTable();
+    const user = this.infoLogin.IdUsuario;
+    this.reporteService.GetDataReport(user).subscribe(
+      result => {
+        this.DataReport = result;
+        this.ActivarDataTable = true;
+        this.dtOptions = {
+          pagingType: 'full_numbers',
+          pageLength: 10,
+          lengthMenu: [5, 10, 25],
+          search: true,
+          data: this.DataReport,
+          columns: [
+            { data: 'Valor' },
+            { data: 'Nombre' },
+            { data: 'FechaHora' },
+            { data: '$id', visible: false},
+            { data: 'Empresa', visible: false },
+            { data: 'IdDispositivo', visible: false },
+          ],
+          destroy: true,
+          language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+          }
+        };
+      }, error  => {
+        console.error('Error carga tabla reporte. ' + error);
+      }
+    );
+  }
+
+  realodPage(): void {
+    window.location.href = 'http://localhost:4200/Reportes';
+  }
 
   private ValidarPerfilUser(): any {
     if (localStorage.getItem('InfoLogin') !== null) {
-      const infoLogin = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
-      if (infoLogin.IdPerfil === 1) {
+      if (this.infoLogin.IdPerfil === 1) {
         this.GetAllEmpresas();
       } else {
-        this.GetEmpresaId(infoLogin.IdEmpresa);
+        this.GetEmpresaId(this.infoLogin.IdEmpresa);
       }
     }
+  }
+
+  LimpiarFormEmail(): void {
+    this.sendFrom.reset();
   }
 
   validarEmpresas(): any {
@@ -262,6 +336,8 @@ export class ReportesComponent implements OnInit {
     const Sede = new FormControl('', [Validators.required]);
     const Dispositivo = new FormControl('', [Validators.required]);
 
+    const email = new FormControl('', [Validators.required]);
+
     this.reporteFrom = new FormGroup({
       FechaInicio,
       FechaFin,
@@ -269,6 +345,17 @@ export class ReportesComponent implements OnInit {
       Empresa,
       Sede,
       Dispositivo
+    });
+
+    this.sendFrom = new FormGroup({
+      email
+    });
+  }
+
+  ValidarErrorForm(formulario: any): any {
+    Object.keys(formulario.controls).forEach(field => { // {1}
+      const control = formulario.get(field);            // {2}
+      control.markAsTouched({ onlySelf: true });       // {3}
     });
   }
 

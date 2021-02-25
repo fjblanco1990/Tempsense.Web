@@ -22,6 +22,10 @@ export class DispositivosService {
         return this.http.get(this.url, { headers: this.headers });
     }
 
+    GetAllDispositivosSede(Id): Observable<any> {
+        this.url = this.envirment.Url + '/GetAllDispositivosSede?Id=' + Id;
+        return this.http.get(this.url, { headers: this.headers });
+    }
 
     SaveDispositivos(Datos: any): Observable<any> {
         const httpOptions = {
