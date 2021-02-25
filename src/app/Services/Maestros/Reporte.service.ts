@@ -12,7 +12,7 @@ export class ReporteService {
         this.headers = new HttpHeaders().set('Content-Type', 'application/json;charset=UTF-8');
     }
 
-    SendReport(email): Observable<any> {
+    SendReport(email, dataReport): Observable<any> {
         this.url = this.envirment.Url + '/SendMailReport?email=' + email;
         return this.http.post(this.url, { headers: this.headers });
     }

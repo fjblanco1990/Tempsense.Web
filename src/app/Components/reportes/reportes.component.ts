@@ -264,7 +264,7 @@ export class ReportesComponent implements OnInit {
   SendReportMail(): void {
     if (this.sendFrom.valid) {
     const email = this.sendFrom.get('email').value;
-    this.reporteService.SendReport(email).subscribe(
+    this.reporteService.SendReport(email, this.DataReport).subscribe(
       result => {
         this.notificacionesService.ExitosoGeneral('El reporte se envio con exito');
       }, error => {
