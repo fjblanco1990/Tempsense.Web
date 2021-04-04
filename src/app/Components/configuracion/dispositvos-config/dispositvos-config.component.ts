@@ -85,9 +85,13 @@ export class DispositvosConfigComponent implements OnInit {
           this.DataEmpresa.forEach(elementEmp => {
             this.dispositivoFrom.get('Empresa').setValue(elementEmp);
             this.DataMedidas.forEach(elementMedi => {
-              this.dispositivoFrom.get('IdTipoMedida').setValue(elementMedi);
+              if (elementDispo.IdTipoMedida === elementMedi.IdTipoMedida) {
+                this.dispositivoFrom.get('IdTipoMedida').setValue(elementMedi);
+              }
               this.DataSedesAll.forEach(elementSede => {
-                this.dispositivoFrom.get('IdSede').setValue(elementSede);
+                if (elementDispo.IdSede === elementSede.IdSede) {
+                  this.dispositivoFrom.get('IdSede').setValue(elementSede);
+                }
               });
             });
           });

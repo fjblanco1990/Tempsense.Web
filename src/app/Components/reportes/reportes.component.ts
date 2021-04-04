@@ -10,9 +10,7 @@ import { ReporteService } from 'src/app/Services/Maestros/Reporte.service';
 import { NotificacionesService } from 'src/app/Services/Genrales/alertas.service';
 import { Subject, Subscription } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-import { data } from 'jquery';
-import { title } from 'process';
-
+//  
 
 declare var $: any;
 
@@ -115,12 +113,13 @@ export class ReportesComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
-  public DataEmpresa: any;
+  public dataEmpresa: object;
   public DataSede: any;
   public DataDispositivo: any;
   public reporteFrom: any;
   public sendFrom: any;
   public DataReport: any[] = [];
+  public ModelPrint: string[] = [];
   ActivarDataTable = false;
   private infoLogin = JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('InfoLogin')))));
   dtOptions: DataTables.Settings = {};
@@ -140,7 +139,7 @@ export class ReportesComponent implements OnInit {
     this.DataReport = [];
     this.dtOptions.destroy = true;
 
-
+    //#region 
     // this.canvas = document.getElementById('myChart'); this.ctx = this.canvas.getContext('2d'); const myChart = new Chart(this.ctx, {
     //   type: 'line', data: {
     //     labels: ['USA', 'Spain', 'Italy', 'France', 'Germany', 'UK', 'Turkey', 'Iran', 'China', 'Russia',
@@ -160,6 +159,7 @@ export class ReportesComponent implements OnInit {
     //     display: true
     //   }
     // });
+    //#endregion
     this.GetDataAllReport();
   }
 
@@ -214,15 +214,17 @@ export class ReportesComponent implements OnInit {
   GetAllEmpresas(): any {
     this.empresasService.GetAllEmpresas().subscribe(
       resutl => {
-        this.DataEmpresa = resutl;
+         this.dataEmpresa = resutl;
+       
       }
     );
   }
 
   GetEmpresaId(id): any {
-    this.empresasService.GetEmpresaId(id).subscribe(
+    this.empresasService.GetLstEmpresaId(id).subscribe(
       resutl => {
-        this.DataEmpresa = resutl;
+        this.dataEmpresa = resutl;
+        console.log(this.dataEmpresa);
       }
     );
   }
@@ -313,6 +315,15 @@ export class ReportesComponent implements OnInit {
     window.location.href = 'http://localhost:4200/Reportes';
   }
 
+  addDataPrint(): any {
+    this.ModelPrint.push(this.reporteFrom.get('FechaInicio').value);
+    this.ModelPrint.push(this.reporteFrom.get('FechaFin').value);
+    this.ModelPrint.push(this.reporteFrom.get('Empresa').value);
+    this.ModelPrint.push(this.reporteFrom.get('Sede').value);
+    this.ModelPrint.push(this.reporteFrom.get('Dispositivo').value);
+
+  }
+
   private ValidarPerfilUser(): any {
     if (localStorage.getItem('InfoLogin') !== null) {
       if (this.infoLogin.IdPerfil === 1) {
@@ -322,6 +333,8 @@ export class ReportesComponent implements OnInit {
       }
     }
   }
+
+
 
   LimpiarFormEmail(): void {
     this.sendFrom.reset();

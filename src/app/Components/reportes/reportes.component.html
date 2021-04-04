@@ -10,7 +10,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="inputEmail4">Fecha fin</label>
-                <input type="date" class="form-control"  formControlName="FechaFin" >
+                <input type="date" class="form-control"  formControlName="FechaFin">
             </div>
             <div class="form-group col-md-4">
                 <label for="inputPassword4">Filtro</label>
@@ -28,7 +28,7 @@
                 <label for="inputEmail4">Empresa</label>
                 <select class="form-control" formControlName="Empresa" (change)="GetAllSedesId()"> 
                     <option value="">-- Seleccione --</option>
-                    <option *ngFor="let dataEmp of DataEmpresa" [value]="dataEmp.IdEmpresa">
+                    <option *ngFor="let dataEmp of dataEmpresa" [value]="dataEmp.IdEmpresa">
                         {{dataEmp.Nombre}}
                     </option>
                 </select>
@@ -52,16 +52,29 @@
                 </select>
             </div>
         </div>
+       
         <div class="form-row">
-            <div class="form-group col-md-9"></div>
-            <div class="col-xs-12 col-md-12 col-lg-3">
+            <div class="form-group col-md-8">    
+            </div>               
+            <div class="col-xs-12 col-md-12 col-lg-4">
+                <button type="submit" class="btn btn-danger backOscuro" >Generar <i class="far fa-chart-bar"
+                    style="margin-top: 5px;" (click)="addDataPrint()"></i></button> &nbsp;               
                 <button type="submit" class="btn btn-danger backOscuro"><i class="fas fa-print"
                         style="margin-top: 5px;"></i></button>&nbsp;
                 <button type="submit" class="btn btn-danger backOscuro" (click)="realodPage()"><i class="fas fa-sync"
                         style="margin-top: 5px;" ></i></button>&nbsp;
                 <button type="submit" class="btn btn-danger backOscuro"data-toggle="modal" data-target="#ModalSendMailRport"><i class="fas fa-paper-plane"
                         style="margin-top: 5px;"></i></button>
+                
             </div>
+        </div>
+        <br>
+        <div>
+            <!-- <Label> Fecha incial: {{ModelPrint}}</Label>
+            <Label> Fecha Final: {{ModelPrint}}</Label>
+            <Label> Empresa: {{ModelPrint.Empresa.Nombre}}</Label>
+            <label> Sede: {{ModelPrint.Sedes.Nombre}}</label>
+            <Label> Dispositivo: {{ModelPrint.}}</Label> -->
         </div>
         <br>
         <div class="form-row">
@@ -111,13 +124,13 @@
                         <th>IdDispositivo</th> 
                     </tr>
                 </thead>
-                <!-- <tbody *ngFor="let itemReport of DataReport">
+                <tbody *ngFor="let itemReport of DataReport">
                    <tr>
                        <td>{{itemReport.Valor}}</td>
                        <td>{{itemReport.Nombre}}</td>
                        <td>{{itemReport.FechaHora}}</td>
                    </tr>
-                </tbody> -->
+                </tbody>
                 <tfoot>
                     <tr>
                         <th>Valor</th>
